@@ -74,6 +74,24 @@ export default function CaseStudyView({
             </span>
           ))}
         </div>
+        {caseStudy.meta.teamAvatars && caseStudy.meta.teamAvatars.length > 0 && (
+          <div className="mt-6 flex -space-x-3">
+            {caseStudy.meta.teamAvatars.map((avatar, i) => (
+              <div
+                key={i}
+                className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-cream"
+              >
+                <Image
+                  src={avatar}
+                  alt=""
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-3">
@@ -104,9 +122,22 @@ export default function CaseStudyView({
         <h2 className="font-display text-2xl font-extrabold text-ink">
           Problem
         </h2>
-        <div className="mt-4 space-y-3 text-ink/70">
-          {caseStudy.problem.paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
+        <div className="mt-4 space-y-8">
+          {caseStudy.problem.items.map((item, i) => (
+            <div key={i}>
+              <p className="text-ink/70">{item.text}</p>
+              {item.image && (
+                <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+                  <Image
+                    src={item.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 800px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
           ))}
         </div>
         <p className="mt-6 rounded-xl bg-forest/10 p-5 font-semibold text-forest">
@@ -167,6 +198,24 @@ export default function CaseStudyView({
                   />
                 </div>
               )}
+              {step.gallery && (
+                <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                  {step.gallery.map((g, gi) => (
+                    <div key={gi}>
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-forest/10">
+                        <Image
+                          src={g.src}
+                          alt={g.label}
+                          fill
+                          sizes="(min-width: 1024px) 260px, 33vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="mt-2 text-xs text-ink/60">{g.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -206,6 +255,17 @@ export default function CaseStudyView({
         <h2 className="font-display text-2xl font-extrabold text-ink">
           Outcome
         </h2>
+        {caseStudy.outcome.image && (
+          <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+            <Image
+              src={caseStudy.outcome.image}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 800px, 100vw"
+              className="object-cover"
+            />
+          </div>
+        )}
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {caseStudy.outcome.items.map((item, i) => (
             <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
@@ -226,6 +286,17 @@ export default function CaseStudyView({
           <p className="mt-3 leading-relaxed text-ink/70">
             {caseStudy.learning.body}
           </p>
+          {caseStudy.learning.image && (
+            <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+              <Image
+                src={caseStudy.learning.image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 800px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          )}
         </section>
       )}
 

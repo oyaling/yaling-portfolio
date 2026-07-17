@@ -9,24 +9,33 @@ export interface CaseStudy {
     duration?: string;
     team?: string;
     skills: string[];
-    tag?: string;
+    teamAvatars?: string[];
   };
   product: string;
   user: string;
   userStory: string;
   summary: string;
-  problem: { paragraphs: string[]; challenge: string };
+  problem: {
+    items: { text: string; image?: string }[];
+    challenge: string;
+  };
   goal: { intro?: string; items: { title?: string; body: string }[] };
   process: {
     heading: string;
-    steps: { title: string; body: string; note?: string; image?: string }[];
+    steps: {
+      title: string;
+      body: string;
+      note?: string;
+      image?: string;
+      gallery?: { src: string; label: string }[];
+    }[];
   };
   finalSolution: {
     intro?: string;
     items: { title: string; body: string; image?: string }[];
   };
-  outcome: { items: { title: string; body: string }[] };
-  learning?: { intro: string; body: string };
+  outcome: { image?: string; items: { title: string; body: string }[] };
+  learning?: { intro: string; body: string; image?: string };
   flow: string;
 }
 
@@ -51,6 +60,13 @@ const caseStudies: CaseStudy[] = [
         "Usability Test",
         "End-to-End Product Design",
       ],
+      teamAvatars: [
+        `${IMG}/6655cd0f57bd4caa0225f8fa_gin.jpeg`,
+        `${IMG}/6655cd0f53afb0a89a48ef3c_yaling.jpeg`,
+        `${IMG}/6655cd0fdc0760515e3fc2eb_drew.jpeg`,
+        `${IMG}/6655cd0f177e5e46999f77a4_dilasha.jpeg`,
+        `${IMG}/6655cd10059721292ac9288e_david.jpeg`,
+      ],
     },
     product:
       "Palette (Renamed to Course-hub) is a service that helps learning providers market, manage, and sell courses. We helped clients set up their websites to sell courses, which included managing course content on their websites, payment solutions, enrollment management, and marketing campaigns.",
@@ -60,9 +76,15 @@ const caseStudies: CaseStudy[] = [
     summary:
       "As a solo product designer, I spent two months redesigning and shaping the new direction of the admin experience. I collaborated closely with product managers and engineers to define strategy, simplify complex workflows, and build a scalable design system from scratch. As a result, the redesigned platform contributed to a 50% growth in subscription clients over 10 months.",
     problem: {
-      paragraphs: [
-        "Lack of direct view for enrolment data related to each intake: Users want to access intake performance and student profiles directly within the platform to streamline their workflow.",
-        "Unclear interface structure: the top navigation is unclear, and it is not easy to fit complex features in the future. All the fields are listed on a single page.",
+      items: [
+        {
+          text: "Lack of direct view for enrolment data related to each intake: users want to access intake performance and student profiles directly within the platform to streamline their workflow.",
+          image: `${IMG}/68b84f0984ade7ab980156bb_Designthinking_Problem1%20(3).jpg`,
+        },
+        {
+          text: "Unclear interface structure: the top navigation is unclear, and it is not easy to fit complex features in the future. All the fields are listed on a single page.",
+          image: `${IMG}/68b84f09c46dd5493801c05b_Designthinking_Problem2%20(1).jpg`,
+        },
       ],
       challenge:
         "How might we streamline the enrolment checking experience to improve efficiency?",
@@ -94,18 +116,17 @@ const caseStudies: CaseStudy[] = [
         {
           title: "1. User research",
           body: "Reviewed existing admin workflows and interviewed client administrators to understand where enrolment and revenue tasks were breaking down.",
-          image: `${IMG}/68b84f0984ade7ab980156bb_Designthinking_Problem1%20(3).jpg`,
+          image: `${IMG}/68b8b3b713baffdbd3a69cef_Designthinking_Research3%20(4).jpg`,
         },
         {
           title: "2. Considering business opportunities",
           body: "We saw an opportunity to position the platform as more than a course management tool, but also an analytics solution. By extracting marketing insights from sales data that support marketing and campaign decisions, we could help clients scale their course sales effectively.",
           note: "Opportunity: extracting valuable marketing insights from sales data could meet clients' expectations.",
-          image: `${IMG}/67c052ea346acb0341a50d0e_Designthinking_Research2.jpg`,
         },
         {
           title: "3. Prioritising features collaboratively",
           body: "Working closely with the product managers and engineers, we prioritised features for a lean first release. We focused on existing feature optimisations and considered the potential expansion ability. This approach ensured we could move fast while setting a foundation for continuous improvement.",
-          image: `${IMG}/68b8b3b713baffdbd3a69cef_Designthinking_Research3%20(4).jpg`,
+          image: `${IMG}/67c052ea346acb0341a50d0e_Designthinking_Research2.jpg`,
         },
         {
           title: "4. Restructuring the information architecture",
@@ -149,6 +170,7 @@ const caseStudies: CaseStudy[] = [
       ],
     },
     outcome: {
+      image: `${IMG}%2F6658611024a5f9621327f73e_Palette_overview%202024-poster-00001.jpg`,
       items: [
         {
           title: "100% positive feedback from UAT testing",
@@ -180,6 +202,11 @@ const caseStudies: CaseStudy[] = [
       role: "Product designer",
       team: "Product manager, 2 engineers",
       skills: ["UX design", "UI design", "Feature Design"],
+      teamAvatars: [
+        `${IMG}/6655cd0f53afb0a89a48ef3c_yaling.jpeg`,
+        `${IMG}/673717a9ebead6da977a8fa2_1589259934613.jpeg`,
+        `${IMG}/6737168eab8f5d37a6690543_1719522268590.jpeg`,
+      ],
     },
     product:
       "Palette (Renamed to Course-hub) is a service that helps learning providers market, manage, and sell courses. We helped clients set up their websites to sell courses, which included managing course content on their websites, payment solutions, enrollment management, and marketing campaigns.",
@@ -189,8 +216,11 @@ const caseStudies: CaseStudy[] = [
     summary:
       "I led the design of a website customisation feature using reusable content blocks, empowering non-technical users to edit course pages easily and confidently. This improvement significantly enhanced usability and user satisfaction. As our team was still small, efficiently managing resources was crucial during our growth stage — this new feature also helped reduce the setup time for white-label websites for new clients by 50% within two months.",
     problem: {
-      paragraphs: [
-        "Many clients' administrators wanted to add content on course pages, but they were afraid of breaking the layout or needed to rely on our team for small changes. This created inconvenience for both our clients and our development team.",
+      items: [
+        {
+          text: "Many clients' administrators wanted to add content on course pages, but they were afraid of breaking the layout or needed to rely on our team for small changes. This created inconvenience for both our clients and our development team.",
+          image: `${IMG}/68179cfc99749f33deeacf48_UI_Problem1.jpg`,
+        },
       ],
       challenge:
         "How can we give administrators confidence to edit layouts without needing design or coding skills?",
@@ -209,31 +239,32 @@ const caseStudies: CaseStudy[] = [
         {
           title: "1. User research",
           body: "Talked with client administrators about the kinds of edits they attempted and where they got stuck.",
+          image: `${IMG}/68b856c9aefb1024a5324331_UI_Research2%20(2).jpg`,
         },
         {
           title: "2. Exploring layout variations",
           body: "Analysed past client projects to identify common layout patterns, then transformed frequently used sections into blocks.",
-          image: `${IMG}/6816ed826b64741741abf819_Process3.1.jpg`,
+          image: `${IMG}/68179cfcd20594846991d946_UI_Design%20decision3.1.jpg`,
         },
         {
           title: "3. Designing blocks by scenario",
           body: "General pages: blocks in this category include a broader range of flexible layouts to support marketing and landing pages as needed. Course pages: blocks in this category don't have variations — the purpose is to present course details clearly, such as text, video, accordion, and program.",
-          image: `${IMG}/67effc52be0e01f91fd73184_Process1.4.jpg`,
+          image: `${IMG}/68179cfdba19dd766d9fd976_UI_Design%20decision4.1.jpg`,
         },
         {
           title: "4. Keeping the block number lean",
           body: 'Template-based approaches can limit visual diversity, so I introduced a "style control option" in the block setting. For example, the Hero block offers options like carousel, image ratio, text alignment, and colour style — this ensured diverse design needs while maintaining a lean block number.',
-          image: `${IMG}/681662292752d2ab8088fb65_Process2.2.jpg`,
+          image: `${IMG}/68179cfd8e783498a09ab0c6_UI_Design%20decision4.1-1.jpg`,
         },
         {
           title: "5. Focusing on content more than visual",
           body: 'Users frequently need to add content with the same visual style. For example, a user wants to add a new teacher bio after the existing one as an update — she doesn\'t want a new block, just a new item under the same block without any visual changes. The "add item" action under the Author-and-image, List, and Accordion blocks is essential.',
-          image: `${IMG}/6816edd721679bcf16647c49_Process1.1.jpg`,
+          image: `${IMG}/68179cfd7b7c3d8f5c79b1bf_UI_Design%20decision4.1-2.jpg`,
         },
         {
           title: "6. Ensuring proper contrast",
           body: "We also added manual colour overrides — such as text colour on image backgrounds. For example, when a user applies a background image, they can manually adjust the text colour to ensure proper contrast, improving both accessibility and aesthetics.",
-          image: `${IMG}/67effc52801970682e792cd0_Process1.5.jpg`,
+          image: `${IMG}/68179cfcccc61f09884d4372_UI_Design%20decision5.jpg`,
         },
       ],
     },
@@ -244,12 +275,12 @@ const caseStudies: CaseStudy[] = [
         {
           title: "Example: adding a teacher bio to the course page",
           body: '1. Add a block → 2. Click "add item" to edit → 3. Save',
-          image: `${IMG}/673c9e4cb19cffab5cf01130_Landingpage.jpg`,
+          image: `${IMG}%2F6736e129013796d6eb5dd6a3_Expand%20content-block%20design-poster-00001.jpg`,
         },
         {
           title: "Example: adding a hero section to the homepage",
           body: '1. Click "add block" → 2. Hover the icon to see the preview → 3. Add',
-          image: `${IMG}/673c9e4c620a064255ead1b5_Survey.jpg`,
+          image: `${IMG}%2F6736e118199d8d0b6b286828_Add%20block_block%20design-poster-00001.jpg`,
         },
       ],
     },
@@ -273,6 +304,10 @@ const caseStudies: CaseStudy[] = [
       role: "Product designer",
       team: "Client project",
       skills: ["Prototype", "UX Design", "UI Design", "Data Visualisation"],
+      teamAvatars: [
+        `${IMG}/6655cd0f53afb0a89a48ef3c_yaling.jpeg`,
+        `${IMG}/673717a9ebead6da977a8fa2_1589259934613.jpeg`,
+      ],
     },
     product:
       "Compass 360 helps organisations understand their workforce capabilities and close the gap between strategy and skills. Compass 360 enables individuals, managers, and leaders to assess capability, generate insights, and align development plans to real learning pathways — all in one intuitive, data-rich platform.",
@@ -282,8 +317,10 @@ const caseStudies: CaseStudy[] = [
     summary:
       "I was the solo designer on this project, responsible for initiating the solution and driving iterations based on usability testing before preparing the final assets. The key highlight was using a progress header and positive, non-numeric feedback design to encourage users to complete the survey and share their results. This approach achieved a 100% survey completion rate during UAT (User Acceptance Testing) with 10 participants. My contributions focused on: creating interactive prototypes to communicate design ideas and user journeys, ensuring alignment between user needs, technical feasibility, and product goals; managing stakeholder expectations and translating requirements into intuitive, efficient, and visually engaging interfaces; and supporting mobile devices.",
     problem: {
-      paragraphs: [
-        "Our client introduced a capability framework to assess governance skills among managers, but participation remained low due to a lack of motivation.",
+      items: [
+        {
+          text: "Our client introduced a capability framework to assess governance skills among managers, but participation remained low due to a lack of motivation.",
+        },
       ],
       challenge:
         "How might we design a supportive experience that motivates managers to complete the assessment and feel encouraged by the results?",
@@ -302,21 +339,47 @@ const caseStudies: CaseStudy[] = [
         },
         {
           title: "2. Rapid prototyping for feedback",
-          body: "I built interactive prototypes to gather feedback and validate user flows with stakeholders, which helped manage stakeholder expectations efficiently — testing how modals could support additional explanations and prevent user errors, ensuring users felt guided through each step, and using a consistent component system to simplify both the prototype and future development handoff.",
-          image: `${IMG}/63e48f4ed598a369cd769311%2F673c9e823a227c9aeadc6d85_Surveytool-poster-00001.jpg`,
+          body: "I built interactive prototypes to gather feedback and validate user flows with stakeholders, which helped manage stakeholder expectations efficiently.",
+          gallery: [
+            {
+              src: `${IMG}/6816edd721679bcf16647c49_Process1.1.jpg`,
+              label:
+                "Modal flows — tested how modals could support additional explanations and prevent user errors",
+            },
+            {
+              src: `${IMG}/67effc52f5fd1444a73f877f_Process1.2.jpg`,
+              label: "Navigation clarity — ensured users felt guided through each step",
+            },
+            {
+              src: `${IMG}/67effc52be0e01f91fd73184_Process1.4.jpg`,
+              label:
+                "Reusable components — a consistent system that simplified the prototype and future handoff",
+            },
+          ],
         },
         {
           title: "3. Supporting mobile devices",
           body: "Adapted the full assessment flow so it worked comfortably on mobile, not just desktop.",
+          image: `${IMG}/67effc52801970682e792cd0_Process1.5.jpg`,
         },
         {
           title: "4. Usability improvements",
           body: "Progressive disclosure: shifted from a one-page survey to progressive disclosure for better focus, and adapted traditional radio buttons to increase usability. Scannability: replaced dropdowns with visible option lists to improve scannability.",
+          gallery: [
+            {
+              src: `${IMG}/6816620c4a5d9978b3593c12_Process2.1.jpg`,
+              label: "Progressive disclosure",
+            },
+            {
+              src: `${IMG}/681662292752d2ab8088fb65_Process2.2.jpg`,
+              label: "Scannability",
+            },
+          ],
         },
         {
           title: "5. Positive data visualisation",
           body: "Avoided showing raw scores to reduce judgement, used percentage-based benchmarks for comparison with peers or organisations, and focused on strengths and opportunities instead of \"good vs. bad\" scores.",
-          image: `${IMG}/673c9e4cc559e47725d4d429_Report.jpg`,
+          image: `${IMG}/6816ed826b64741741abf819_Process3.1.jpg`,
         },
       ],
     },
@@ -325,18 +388,22 @@ const caseStudies: CaseStudy[] = [
         {
           title: "Landing page",
           body: "Introduced the capability framework and explained how the tool works.",
+          image: `${IMG}/673c9e4cb19cffab5cf01130_Landingpage.jpg`,
         },
         {
           title: "Main assessment",
           body: "Provided a simple, guided self-assessment experience with consistent visual cues and navigation patterns.",
+          image: `${IMG}/673c9e4c620a064255ead1b5_Survey.jpg`,
         },
         {
           title: "Customised reporting",
           body: "Generated reports that highlighted user strengths and provided benchmarks for comparison — focusing on motivation and clarity over judgement.",
+          image: `${IMG}/673c9e4cc559e47725d4d429_Report.jpg`,
         },
       ],
     },
     outcome: {
+      image: `${IMG}%2F673c9e823a227c9aeadc6d85_Surveytool-poster-00001.jpg`,
       items: [
         {
           title: "100% survey completion rate in the UAT",
@@ -348,6 +415,7 @@ const caseStudies: CaseStudy[] = [
       intro:
         "Two takeaways I learned through this project when encountering design conflicts:",
       body: '1. Uncover the real needs behind stakeholder feedback. 2. Provide options to support better decision-making. While designing the data visualisation, I was asked to highlight one of the three areas in the capability framework, which might have resulted in a confusing chart for users. Through deeper conversations, I discovered the client viewed two areas as a foundational capability (value-driven and compliance-driven) — meaning most managers were expected to perform better in them than in the third (strategy-driven). I prepared two solutions to visually show the potential problem, and also explained that using average score indicators was clear enough for comparison.',
+      image: `${IMG}/6816ed83936df62525af7587_Process3.1-1.jpg`,
     },
     flow: "1. Select and unselect an option → 2. Go next → 3. Get help and exit → 4. Submit → 5. Check the result → 6. Customise report → 7. Get report",
   },
