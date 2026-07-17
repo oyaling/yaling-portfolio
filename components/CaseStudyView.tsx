@@ -1,0 +1,269 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { Locale } from "@/middleware";
+import type { CaseStudy, SiteContent } from "@/lib/content";
+
+export default function CaseStudyView({
+  locale,
+  site,
+  caseStudy,
+  others,
+}: {
+  locale: Locale;
+  site: SiteContent;
+  caseStudy: CaseStudy;
+  others: CaseStudy[];
+}) {
+  const viewWorkCta = site.work[0]?.cta ?? "View work";
+
+  return (
+    <main>
+      <section className="mx-auto max-w-6xl px-6 pb-10 pt-12">
+        <p className="text-sm font-semibold uppercase tracking-wide text-forest">
+          {caseStudy.cardTitle}
+        </p>
+        <h1 className="mt-2 font-display text-3xl font-extrabold text-ink sm:text-4xl">
+          {caseStudy.title}
+        </h1>
+        <p className="mt-3 max-w-2xl text-ink/70">{caseStudy.subtitle}</p>
+
+        <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-forest/10">
+          <Image
+            src={caseStudy.cover}
+            alt={caseStudy.title}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <div className="mt-10 grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
+              Role
+            </p>
+            <p className="mt-1 font-semibold text-ink">{caseStudy.meta.role}</p>
+          </div>
+          {caseStudy.meta.duration && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
+                Duration
+              </p>
+              <p className="mt-1 font-semibold text-ink">
+                {caseStudy.meta.duration}
+              </p>
+            </div>
+          )}
+          {caseStudy.meta.team && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
+                Team
+              </p>
+              <p className="mt-1 font-semibold text-ink">{caseStudy.meta.team}</p>
+            </div>
+          )}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {caseStudy.meta.skills.map((skill) => (
+            <span
+              key={skill}
+              className="rounded-full bg-forest/10 px-3 py-1 text-xs font-semibold text-forest"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-3">
+        <div>
+          <h3 className="font-display text-lg font-bold text-ink">1. Product</h3>
+          <p className="mt-2 text-ink/70">{caseStudy.product}</p>
+        </div>
+        <div>
+          <h3 className="font-display text-lg font-bold text-ink">2. User</h3>
+          <p className="mt-2 text-ink/70">{caseStudy.user}</p>
+        </div>
+        <div>
+          <h3 className="font-display text-lg font-bold text-ink">
+            3. User story
+          </h3>
+          <p className="mt-2 text-ink/70">{caseStudy.userStory}</p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-display text-2xl font-extrabold text-ink">
+          Summary
+        </h2>
+        <p className="mt-4 leading-relaxed text-ink/70">{caseStudy.summary}</p>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-display text-2xl font-extrabold text-ink">
+          Problem
+        </h2>
+        <div className="mt-4 space-y-3 text-ink/70">
+          {caseStudy.problem.paragraphs.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <p className="mt-6 rounded-xl bg-forest/10 p-5 font-semibold text-forest">
+          📌 {caseStudy.problem.challenge}
+        </p>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-display text-2xl font-extrabold text-ink">Goal</h2>
+        {caseStudy.goal.intro && (
+          <p className="mt-4 text-ink/70">{caseStudy.goal.intro}</p>
+        )}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {caseStudy.goal.items.map((item, i) => (
+            <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
+              <div className="flex items-start gap-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-sm font-bold text-cream">
+                  {i + 1}
+                </span>
+                <div>
+                  {item.title && (
+                    <p className="font-display font-bold text-ink">
+                      {item.title}
+                    </p>
+                  )}
+                  <p className="mt-1 text-sm text-ink/70">{item.body}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-display text-2xl font-extrabold text-ink">
+          {caseStudy.process.heading}
+        </h2>
+        <div className="mt-8 space-y-12">
+          {caseStudy.process.steps.map((step, i) => (
+            <div key={i}>
+              <h3 className="font-display text-lg font-bold text-ink">
+                {step.title}
+              </h3>
+              <p className="mt-2 leading-relaxed text-ink/70">{step.body}</p>
+              {step.note && (
+                <p className="mt-3 rounded-xl bg-forest/10 p-4 text-sm font-semibold text-forest">
+                  📌 {step.note}
+                </p>
+              )}
+              {step.image && (
+                <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    sizes="(min-width: 1024px) 800px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-display text-2xl font-extrabold text-ink">
+          Final solution
+        </h2>
+        {caseStudy.finalSolution.intro && (
+          <p className="mt-4 text-ink/70">{caseStudy.finalSolution.intro}</p>
+        )}
+        <div className="mt-8 space-y-12">
+          {caseStudy.finalSolution.items.map((item, i) => (
+            <div key={i}>
+              <h3 className="font-display text-lg font-bold text-ink">
+                {item.title}
+              </h3>
+              <p className="mt-2 leading-relaxed text-ink/70">{item.body}</p>
+              {item.image && (
+                <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 1024px) 800px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-display text-2xl font-extrabold text-ink">
+          Outcome
+        </h2>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {caseStudy.outcome.items.map((item, i) => (
+            <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
+              <p className="font-display font-bold text-ink">{item.title}</p>
+              <p className="mt-2 text-sm text-ink/70">{item.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-sm text-ink/50">{caseStudy.flow}</p>
+      </section>
+
+      {caseStudy.learning && (
+        <section className="mx-auto max-w-4xl px-6 py-10">
+          <h2 className="font-display text-2xl font-extrabold text-ink">
+            Learning
+          </h2>
+          <p className="mt-4 text-ink/70">{caseStudy.learning.intro}</p>
+          <p className="mt-3 leading-relaxed text-ink/70">
+            {caseStudy.learning.body}
+          </p>
+        </section>
+      )}
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="font-display text-2xl font-extrabold text-ink">
+          {site.otherWorksHeading}
+        </h2>
+        <div className="mt-8 grid gap-8 sm:grid-cols-2">
+          {others.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/${locale}/work/${item.slug}`}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
+            >
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest/10">
+                <Image
+                  src={item.cover}
+                  alt={item.title}
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-1 flex-col gap-2 p-6">
+                <p className="text-xs font-semibold uppercase tracking-wide text-forest">
+                  {item.cardTitle}
+                </p>
+                <h3 className="font-display text-lg font-bold text-ink">
+                  {item.subtitle}
+                </h3>
+                <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4">
+                  {viewWorkCta}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
