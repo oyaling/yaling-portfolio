@@ -27,7 +27,7 @@ export default function CaseStudyView({
         </h1>
         <p className="mt-3 max-w-2xl text-ink/70">{caseStudy.subtitle}</p>
 
-        <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-forest/10">
+        <div className="relative mt-10 aspect-[3840/2480] w-full overflow-hidden rounded-2xl bg-forest/10">
           <Image
             src={caseStudy.cover}
             alt={caseStudy.title}
@@ -127,13 +127,13 @@ export default function CaseStudyView({
             <div key={i}>
               <p className="text-ink/70">{item.text}</p>
               {item.image && (
-                <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
                   <Image
                     src={item.image}
                     alt=""
                     fill
                     sizes="(min-width: 1024px) 800px, 100vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               )}
@@ -188,13 +188,13 @@ export default function CaseStudyView({
                 </p>
               )}
               {step.image && (
-                <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
                   <Image
                     src={step.image}
                     alt={step.title}
                     fill
                     sizes="(min-width: 1024px) 800px, 100vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               )}
@@ -202,13 +202,13 @@ export default function CaseStudyView({
                 <div className="mt-4 grid gap-4 sm:grid-cols-3">
                   {step.gallery.map((g, gi) => (
                     <div key={gi}>
-                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-forest/10">
+                      <div className="relative aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
                         <Image
                           src={g.src}
                           alt={g.label}
                           fill
                           sizes="(min-width: 1024px) 260px, 33vw"
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </div>
                       <p className="mt-2 text-xs text-ink/60">{g.label}</p>
@@ -236,13 +236,13 @@ export default function CaseStudyView({
               </h3>
               <p className="mt-2 leading-relaxed text-ink/70">{item.body}</p>
               {item.image && (
-                <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes="(min-width: 1024px) 800px, 100vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               )}
@@ -256,13 +256,13 @@ export default function CaseStudyView({
           Outcome
         </h2>
         {caseStudy.outcome.image && (
-          <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+          <div className="relative mt-6 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
             <Image
               src={caseStudy.outcome.image}
               alt=""
               fill
               sizes="(min-width: 1024px) 800px, 100vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         )}
@@ -287,13 +287,13 @@ export default function CaseStudyView({
             {caseStudy.learning.body}
           </p>
           {caseStudy.learning.image && (
-            <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest/10">
+            <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
               <Image
                 src={caseStudy.learning.image}
                 alt=""
                 fill
                 sizes="(min-width: 1024px) 800px, 100vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           )}
@@ -311,7 +311,7 @@ export default function CaseStudyView({
               href={`/${locale}/work/${item.slug}`}
               className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest/10">
+              <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-forest/10">
                 <Image
                   src={item.cover}
                   alt={item.title}

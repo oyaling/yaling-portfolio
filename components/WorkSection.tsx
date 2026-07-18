@@ -23,7 +23,7 @@ export default function WorkSection({
             href={`/${locale}/work/${item.slug}`}
             className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest/10">
+            <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-forest/10">
               <Image
                 src={item.cover}
                 alt={item.title}
