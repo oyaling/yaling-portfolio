@@ -22,7 +22,7 @@ export default function Hero({ site }: { site: SiteContent }) {
         </a>
       </div>
 
-      <div className="relative aspect-[1740/1114] w-full overflow-hidden rounded-2xl">
+      <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
         <Image
           src={site.profileImage}
           alt={site.hero.name}

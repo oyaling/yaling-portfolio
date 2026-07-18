@@ -180,8 +180,7 @@ const siteContent: SiteContent = {
   otherWorksHeading: "其他作品",
   resumeUrl:
     "https://drive.google.com/file/d/1CtEN4xiBfaSUQyRqVOiNlknVW-8oGjV2/view?usp=sharing",
-  profileImage:
-    "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b8c2f022505cfdcdc2b937_image-ya-ling%20(18).jpg",
+  profileImage: "/hero.png",
   languageSwitcher: {
     en: "EN",
     zhHant: "繁中",

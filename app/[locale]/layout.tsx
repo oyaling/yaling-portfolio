@@ -32,7 +32,7 @@ export function generateMetadata({
       ? "一位擅長產品策略、UX/UI 設計與系統性思考的產品設計師。"
       : "A product designer experienced in product strategy, UX/UI and System Thinking.",
     icons: {
-      icon: "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/63e7594075eb7b146bc41189_yaling.png",
+      icon: "/favicon.png",
     },
   };
 }
