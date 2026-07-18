@@ -16,7 +16,7 @@ const siteContent = {
       desc: "Helps learning providers to market, manage and sell courses.",
       cta: "View work",
       cover:
-        "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b8303c11d02ef72f5d0dcc_Redesign_cover%20(2).jpg",
+        "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg",
     },
     {
       slug: "designing-a-block-based-feature-for-website-customisation",

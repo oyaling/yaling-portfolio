@@ -17,7 +17,7 @@ const siteContent: SiteContent = {
       desc: "協助教育機構行銷、管理並銷售課程。",
       cta: "查看作品",
       cover:
-        "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b8303c11d02ef72f5d0dcc_Redesign_cover%20(2).jpg",
+        "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg",
     },
     {
       slug: "designing-a-block-based-feature-for-website-customisation",

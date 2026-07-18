@@ -187,6 +187,17 @@ export default function CaseStudyView({
                   📌 {step.note}
                 </p>
               )}
+              {step.prototypeUrl && (
+                <a
+                  href={step.prototypeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream hover:bg-forest/90"
+                >
+                  {step.prototypeLabel ?? "View prototype"}
+                  <span aria-hidden>↗</span>
+                </a>
+              )}
               {step.image && (
                 <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
                   <Image
@@ -235,16 +246,27 @@ export default function CaseStudyView({
                 {item.title}
               </h3>
               <p className="mt-2 leading-relaxed text-ink/70">{item.body}</p>
-              {item.image && (
-                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(min-width: 1024px) 800px, 100vw"
-                    className="object-contain"
+              {item.video ? (
+                <div className="mt-4 w-full overflow-hidden rounded-xl bg-forest/10">
+                  <video
+                    src={item.video}
+                    controls
+                    playsInline
+                    className="w-full"
                   />
                 </div>
+              ) : (
+                item.image && (
+                  <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(min-width: 1024px) 800px, 100vw"
+                      className="object-contain"
+                    />
+                  </div>
+                )
               )}
             </div>
           ))}
@@ -255,16 +277,32 @@ export default function CaseStudyView({
         <h2 className="font-display text-2xl font-extrabold text-ink">
           Outcome
         </h2>
-        {caseStudy.outcome.image && (
-          <div className="relative mt-6 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
-            <Image
-              src={caseStudy.outcome.image}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 800px, 100vw"
-              className="object-contain"
-            />
+        {caseStudy.outcome.video ? (
+          <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-center">
+            <div className="w-full overflow-hidden rounded-xl bg-forest/10">
+              <video
+                src={caseStudy.outcome.video}
+                controls
+                playsInline
+                className="w-full"
+              />
+            </div>
+            <p className="rounded-xl bg-forest/10 p-5 text-sm leading-relaxed text-forest">
+              {caseStudy.flow}
+            </p>
           </div>
+        ) : (
+          caseStudy.outcome.image && (
+            <div className="relative mt-6 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+              <Image
+                src={caseStudy.outcome.image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 800px, 100vw"
+                className="object-contain"
+              />
+            </div>
+          )
         )}
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {caseStudy.outcome.items.map((item, i) => (
@@ -274,7 +312,9 @@ export default function CaseStudyView({
             </div>
           ))}
         </div>
-        <p className="mt-8 text-sm text-ink/50">{caseStudy.flow}</p>
+        {!caseStudy.outcome.video && (
+          <p className="mt-8 text-sm text-ink/50">{caseStudy.flow}</p>
+        )}
       </section>
 
       {caseStudy.learning && (

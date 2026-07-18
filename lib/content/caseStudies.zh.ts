@@ -8,7 +8,7 @@ const caseStudies: CaseStudy[] = [
     cardTitle: "Palette - 線上學習平台後台",
     title: "設計更好的報名與營收管理後台體驗",
     subtitle: "協助教育機構行銷、管理並銷售課程。",
-    cover: `${IMG}/68b8303c11d02ef72f5d0dcc_Redesign_cover%20(2).jpg`,
+    cover: `${IMG}/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg`,
     meta: {
       role: "產品設計師",
       duration: "2020 年 3 月 – 12 月",
@@ -120,17 +120,17 @@ const caseStudies: CaseStudy[] = [
         {
           title: "可延展的設計系統",
           body: "所有支援元件的頁面都維持視覺一致性，加快了開發速度。",
-          image: `${IMG}/67f2ad638e9c38433d10f7fe_Designthinking_Final%20solution2.2.jpg`,
+          video: `https://s3.amazonaws.com/webflow-prod-assets/63e48f4ed598a369cd769311/6818ab6de905afeb08f188b3_Design%20system.mp4`,
         },
         {
           title: "行銷官網",
           body: "與產品經理及行銷團隊合作，重新設計產品識別與官網，傳達產品願景與功能，帶動客戶成長。",
-          image: `${IMG}/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg`,
+          image: `${IMG}/67c052e4c95a5560e2671d27_Designthinking_Final%20solution%204.1.jpg`,
         },
       ],
     },
     outcome: {
-      image: `${IMG}%2F6658611024a5f9621327f73e_Palette_overview%202024-poster-00001.jpg`,
+      video: `https://s3.amazonaws.com/webflow-prod-assets/63e48f4ed598a369cd769311/6658611024a5f9621327f73e_Palette_overview%202024.mov`,
       items: [
         {
           title: "使用者驗收測試 100% 正面回饋",
@@ -234,12 +234,12 @@ const caseStudies: CaseStudy[] = [
         {
           title: "範例：在課程頁新增講師簡介",
           body: "1. 新增區塊 → 2.「新增項目」進行編輯 → 3. 儲存",
-          image: `${IMG}%2F6736e129013796d6eb5dd6a3_Expand%20content-block%20design-poster-00001.jpg`,
+          video: `https://s3.amazonaws.com/webflow-prod-assets/63e48f4ed598a369cd769311/6736e129013796d6eb5dd6a3_Expand%20content-block%20design.mp4`,
         },
         {
           title: "範例：在首頁新增 Hero 區塊",
           body: "1. 點擊「新增區塊」→ 2. 將滑鼠移到圖示上預覽 → 3. 新增",
-          image: `${IMG}%2F6736e118199d8d0b6b286828_Add%20block_block%20design-poster-00001.jpg`,
+          video: `https://s3.amazonaws.com/webflow-prod-assets/63e48f4ed598a369cd769311/6736e118199d8d0b6b286828_Add%20block_block%20design.mp4`,
         },
       ],
     },
@@ -296,6 +296,9 @@ const caseStudies: CaseStudy[] = [
         {
           title: "2. 快速製作原型以取得回饋",
           body: "我建置了互動原型，用來蒐集回饋並與利害關係人一起驗證使用者流程，這有效協助管理了利害關係人的期望。",
+          prototypeUrl:
+            "https://www.figma.com/proto/1ameCoME3jxPts7UbLbpRR/Portfolio---Edith-Cowan-Uni-Directing-Safety?node-id=4205-5487&p=f&t=JXgDmQIB2GjxFSPG-1&scaling=scale-down-width&content-scaling=fixed&page-id=4201%3A5364&starting-point-node-id=4205%3A5487&show-proto-sidebar=1",
+          prototypeLabel: "查看原型",
           gallery: [
             {
               src: `${IMG}/6816edd721679bcf16647c49_Process1.1.jpg`,
@@ -357,7 +360,7 @@ const caseStudies: CaseStudy[] = [
       ],
     },
     outcome: {
-      image: `${IMG}%2F673c9e823a227c9aeadc6d85_Surveytool-poster-00001.jpg`,
+      video: `https://s3.amazonaws.com/webflow-prod-assets/63e48f4ed598a369cd769311/673c9e823a227c9aeadc6d85_Surveytool.mp4`,
       items: [
         {
           title: "UAT 問卷完成率達 100%",
