@@ -4,7 +4,7 @@ const siteContent: SiteContent = {
   nav: { home: "首頁", work: "作品", experience: "經歷" },
   hero: {
     greetings: ["Hello :)", "Hallo", "Nǐ hǎo"],
-    name: "Ya-ling O.",
+    name: "YA-LING O",
     headline: "一位擅長產品策略、UX/UI 設計與系統性思考的產品設計師。",
     body: "我的經驗橫跨後台管理介面、CMS 功能開發、B2B 產品，以及優化使用者上線流程與付款體驗。",
     resumeCta: "下載履歷",

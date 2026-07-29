@@ -2,7 +2,7 @@ const siteContent = {
   nav: { home: "Home", work: "Work", experience: "Experience" },
   hero: {
     greetings: ["Hello :)", "Hallo", "Nǐ hǎo"],
-    name: "Ya-ling O.",
+    name: "YA-LING O",
     headline:
       "A product designer experienced in product strategy, UX/UI and System Thinking.",
     body: "My experience across admin interfaces, CMS features, B2B products and optimising onboarding and payment experiences.",
