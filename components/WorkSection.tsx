@@ -17,7 +17,7 @@ export default function WorkSection({
       </h2>
 
       <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {site.work.map((item) => (
+        {site.work.map((item, i) => (
           <Link
             key={item.slug}
             href={`/${locale}/work/${item.slug}`}
@@ -33,12 +33,18 @@ export default function WorkSection({
               />
             </div>
             <div className="flex flex-1 flex-col gap-2 p-6">
-              <p className="text-xs font-semibold uppercase tracking-wide text-forest">
-                {item.title}
-              </p>
+              <div className="flex items-center gap-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-sm font-bold text-cream">
+                  {i + 1}
+                </span>
+                <p className="text-xs font-semibold uppercase tracking-wide text-forest">
+                  {item.title}
+                </p>
+              </div>
               <h3 className="font-display text-lg font-bold text-ink">
-                {item.desc}
+                {item.name}
               </h3>
+              <p className="text-sm text-ink/70">{item.desc}</p>
               <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4">
                 {item.cta}
               </span>

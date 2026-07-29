@@ -5,7 +5,10 @@ const IMG = "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311";
 const caseStudies: CaseStudy[] = [
   {
     slug: "designing-admin-experience-for-better-enrolment-and-revenue-management",
+    order: 1,
     cardTitle: "Palette - 線上學習平台後台",
+    cardName: "招生與營收管理",
+    cardDesc: "協助教育機構行銷、管理並銷售課程。",
     title: "設計更好的報名與營收管理後台體驗",
     subtitle: "協助教育機構行銷、管理並銷售課程。",
     cover: `${IMG}/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg`,
@@ -154,7 +157,10 @@ const caseStudies: CaseStudy[] = [
   },
   {
     slug: "designing-a-block-based-feature-for-website-customisation",
+    order: 2,
     cardTitle: "Palette - 線上學習平台後台",
+    cardName: "區塊功能與內容管理",
+    cardDesc: "協助網站客製化。",
     title: "設計網站客製化的區塊化功能",
     subtitle: "透過 CMS 與區塊化設計功能協助網站客製化。",
     cover: `${IMG}/68b8d8ea3538af5875e1bfc3_Block%20design_cover%20(6).jpg`,
@@ -255,7 +261,10 @@ const caseStudies: CaseStudy[] = [
   },
   {
     slug: "designing-a-survey-experience-and-visualising-assessment-data",
-    cardTitle: "評測工具",
+    order: 3,
+    cardTitle: "360 評測工具",
+    cardName: "評測體驗與報告",
+    cardDesc: "協助企業了解團隊的職能狀況。",
     title: "設計問卷體驗並視覺化評測數據",
     subtitle: "協助企業了解團隊的職能狀況。",
     cover: `${IMG}/68b837fee833ab39f756004d_Survey%20tool_cover%20(5).jpg`,

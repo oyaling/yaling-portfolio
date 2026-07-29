@@ -14,6 +14,7 @@ const siteContent: SiteContent = {
     {
       slug: "designing-admin-experience-for-better-enrolment-and-revenue-management",
       title: "Palette - 線上學習平台後台",
+      name: "招生與營收管理",
       desc: "協助教育機構行銷、管理並銷售課程。",
       cta: "查看作品",
       cover:
@@ -22,14 +23,16 @@ const siteContent: SiteContent = {
     {
       slug: "designing-a-block-based-feature-for-website-customisation",
       title: "Palette - 線上學習平台後台",
-      desc: "透過 CMS 與區塊化設計功能協助網站客製化。",
+      name: "區塊功能與內容管理",
+      desc: "協助網站客製化。",
       cta: "查看作品",
       cover:
         "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b8d8ea3538af5875e1bfc3_Block%20design_cover%20(6).jpg",
     },
     {
       slug: "designing-a-survey-experience-and-visualising-assessment-data",
-      title: "評測工具",
+      title: "360 評測工具",
+      name: "評測體驗與報告",
       desc: "協助企業了解團隊的職能狀況。",
       cta: "查看作品",
       cover:

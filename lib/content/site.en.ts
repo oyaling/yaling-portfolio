@@ -12,23 +12,26 @@ const siteContent = {
   work: [
     {
       slug: "designing-admin-experience-for-better-enrolment-and-revenue-management",
-      title: "Palette - E Learning platform admin",
-      desc: "Helps learning providers to market, manage and sell courses.",
+      title: "Palette - E-learning platform admin",
+      name: "Enrolment and revenue management",
+      desc: "Helps learning providers market, manage and sell courses.",
       cta: "View work",
       cover:
         "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg",
     },
     {
       slug: "designing-a-block-based-feature-for-website-customisation",
-      title: "Palette - E Learning platform admin",
-      desc: "Helps website customisation with CMS and block design features.",
+      title: "Palette - E-learning platform admin",
+      name: "Block Feature and content management",
+      desc: "Helps with website customisation.",
       cta: "View work",
       cover:
         "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b8d8ea3538af5875e1bfc3_Block%20design_cover%20(6).jpg",
     },
     {
       slug: "designing-a-survey-experience-and-visualising-assessment-data",
-      title: "Assessment Tool",
+      title: "360 Assessment Tool",
+      name: "Assessment experience and report",
       desc: "Helps organisations understand their workforce capabilities.",
       cta: "View work",
       cover:

@@ -361,12 +361,18 @@ export default function CaseStudyView({
                 />
               </div>
               <div className="flex flex-1 flex-col gap-2 p-6">
-                <p className="text-xs font-semibold uppercase tracking-wide text-forest">
-                  {item.cardTitle}
-                </p>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-sm font-bold text-cream">
+                    {item.order}
+                  </span>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-forest">
+                    {item.cardTitle}
+                  </p>
+                </div>
                 <h3 className="font-display text-lg font-bold text-ink">
-                  {item.subtitle}
+                  {item.cardName}
                 </h3>
+                <p className="text-sm text-ink/70">{item.cardDesc}</p>
                 <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4">
                   {viewWorkCta}
                 </span>
