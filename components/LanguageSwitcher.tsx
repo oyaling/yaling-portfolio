@@ -31,7 +31,7 @@ export default function LanguageSwitcher({
           aria-current={loc === locale}
           className={`rounded-full px-3 py-1 transition-colors ${
             loc === locale
-              ? "bg-forest text-cream"
+              ? "bg-brand text-cream"
               : "text-ink/60 hover:text-ink"
           }`}
         >

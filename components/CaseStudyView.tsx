@@ -19,15 +19,15 @@ export default function CaseStudyView({
   return (
     <main>
       <section className="mx-auto max-w-6xl px-6 pb-10 pt-12">
-        <p className="text-sm font-semibold uppercase tracking-wide text-forest">
+        <p className="text-sm font-semibold uppercase tracking-wide text-brand">
           {caseStudy.cardTitle}
         </p>
         <h1 className="mt-2 font-display text-3xl font-extrabold text-ink sm:text-4xl">
-          {caseStudy.title}
+          {caseStudy.cardName}
         </h1>
         <p className="mt-3 max-w-2xl text-ink/70">{caseStudy.subtitle}</p>
 
-        <div className="relative mt-10 aspect-[3840/2480] w-full overflow-hidden rounded-2xl bg-forest/10">
+        <div className="relative mt-10 aspect-[3840/2480] w-full overflow-hidden rounded-2xl bg-brand/10">
           <Image
             src={caseStudy.cover}
             alt={caseStudy.title}
@@ -68,7 +68,7 @@ export default function CaseStudyView({
           {caseStudy.meta.skills.map((skill) => (
             <span
               key={skill}
-              className="rounded-full bg-forest/10 px-3 py-1 text-xs font-semibold text-forest"
+              className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand"
             >
               {skill}
             </span>
@@ -127,7 +127,7 @@ export default function CaseStudyView({
             <div key={i}>
               <p className="text-ink/70">{item.text}</p>
               {item.image && (
-                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
                   <Image
                     src={item.image}
                     alt=""
@@ -140,7 +140,7 @@ export default function CaseStudyView({
             </div>
           ))}
         </div>
-        <p className="mt-6 rounded-xl bg-forest/10 p-5 font-semibold text-forest">
+        <p className="mt-6 rounded-xl bg-brand/10 p-5 font-semibold text-brand">
           📌 {caseStudy.problem.challenge}
         </p>
       </section>
@@ -154,7 +154,7 @@ export default function CaseStudyView({
           {caseStudy.goal.items.map((item, i) => (
             <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
               <div className="flex items-start gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-sm font-bold text-cream">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-cream">
                   {i + 1}
                 </span>
                 <div>
@@ -183,7 +183,7 @@ export default function CaseStudyView({
               </h3>
               <p className="mt-2 leading-relaxed text-ink/70">{step.body}</p>
               {step.note && (
-                <p className="mt-3 rounded-xl bg-forest/10 p-4 text-sm font-semibold text-forest">
+                <p className="mt-3 rounded-xl bg-brand/10 p-4 text-sm font-semibold text-brand">
                   📌 {step.note}
                 </p>
               )}
@@ -192,14 +192,14 @@ export default function CaseStudyView({
                   href={step.prototypeUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-cream hover:bg-forest/90"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-cream hover:bg-brand/90"
                 >
                   {step.prototypeLabel ?? "View prototype"}
                   <span aria-hidden>↗</span>
                 </a>
               )}
               {step.image && (
-                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
                   <Image
                     src={step.image}
                     alt={step.title}
@@ -213,7 +213,7 @@ export default function CaseStudyView({
                 <div className="mt-4 grid gap-4 sm:grid-cols-3">
                   {step.gallery.map((g, gi) => (
                     <div key={gi}>
-                      <div className="relative aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+                      <div className="relative aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
                         <Image
                           src={g.src}
                           alt={g.label}
@@ -247,7 +247,7 @@ export default function CaseStudyView({
               </h3>
               <p className="mt-2 leading-relaxed text-ink/70">{item.body}</p>
               {item.video ? (
-                <div className="mt-4 w-full overflow-hidden rounded-xl bg-forest/10">
+                <div className="mt-4 w-full overflow-hidden rounded-xl bg-brand/10">
                   <video
                     src={item.video}
                     controls
@@ -257,7 +257,7 @@ export default function CaseStudyView({
                 </div>
               ) : (
                 item.image && (
-                  <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+                  <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -279,7 +279,7 @@ export default function CaseStudyView({
         </h2>
         {caseStudy.outcome.video ? (
           <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-center">
-            <div className="w-full overflow-hidden rounded-xl bg-forest/10">
+            <div className="w-full overflow-hidden rounded-xl bg-brand/10">
               <video
                 src={caseStudy.outcome.video}
                 controls
@@ -287,13 +287,13 @@ export default function CaseStudyView({
                 className="w-full"
               />
             </div>
-            <p className="rounded-xl bg-forest/10 p-5 text-sm leading-relaxed text-forest">
+            <p className="rounded-xl bg-brand/10 p-5 text-sm leading-relaxed text-brand">
               {caseStudy.flow}
             </p>
           </div>
         ) : (
           caseStudy.outcome.image && (
-            <div className="relative mt-6 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+            <div className="relative mt-6 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
               <Image
                 src={caseStudy.outcome.image}
                 alt=""
@@ -327,7 +327,7 @@ export default function CaseStudyView({
             {caseStudy.learning.body}
           </p>
           {caseStudy.learning.image && (
-            <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-forest/10">
+            <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
               <Image
                 src={caseStudy.learning.image}
                 alt=""
@@ -351,7 +351,7 @@ export default function CaseStudyView({
               href={`/${locale}/work/${item.slug}`}
               className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
             >
-              <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-forest/10">
+              <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-brand/10">
                 <Image
                   src={item.cover}
                   alt={item.title}
@@ -361,14 +361,14 @@ export default function CaseStudyView({
                 />
               </div>
               <div className="flex flex-1 flex-col gap-2 p-6">
-                <p className="text-xs font-semibold uppercase tracking-wide text-forest">
+                <p className="text-xs font-semibold uppercase tracking-wide text-brand">
                   {item.cardTitle}
                 </p>
                 <h3 className="font-display text-lg font-bold text-ink">
                   {item.cardName}
                 </h3>
                 <p className="text-sm text-ink/70">{item.cardDesc}</p>
-                <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4">
+                <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-brand decoration-2 underline-offset-4">
                   {viewWorkCta}
                 </span>
               </div>

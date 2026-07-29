@@ -23,7 +23,7 @@ export default function WorkSection({
             href={`/${locale}/work/${item.slug}`}
             className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
           >
-            <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-forest/10">
+            <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-brand/10">
               <Image
                 src={item.cover}
                 alt={item.title}
@@ -33,14 +33,14 @@ export default function WorkSection({
               />
             </div>
             <div className="flex flex-1 flex-col gap-2 p-6">
-              <p className="text-xs font-semibold uppercase tracking-wide text-forest">
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand">
                 {item.title}
               </p>
               <h3 className="font-display text-lg font-bold text-ink">
                 {item.name}
               </h3>
               <p className="text-sm text-ink/70">{item.desc}</p>
-              <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4">
+              <span className="mt-auto pt-4 text-sm font-semibold text-ink underline decoration-brand decoration-2 underline-offset-4">
                 {item.cta}
               </span>
             </div>

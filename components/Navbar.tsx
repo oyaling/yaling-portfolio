@@ -27,13 +27,13 @@ export default function Navbar({
           />
         </Link>
         <nav className="hidden items-center gap-8 text-sm font-semibold text-ink sm:flex">
-          <Link href={`/${locale}`} className="hover:text-forest">
+          <Link href={`/${locale}`} className="hover:text-brand">
             {site.nav.home}
           </Link>
-          <Link href={`/${locale}#work`} className="hover:text-forest">
+          <Link href={`/${locale}#work`} className="hover:text-brand">
             {site.nav.work}
           </Link>
-          <Link href={`/${locale}#experience`} className="hover:text-forest">
+          <Link href={`/${locale}#experience`} className="hover:text-brand">
             {site.nav.experience}
           </Link>
         </nav>

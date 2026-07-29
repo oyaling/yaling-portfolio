@@ -5,7 +5,7 @@ export default function Hero({ site }: { site: SiteContent }) {
   return (
     <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:py-24 lg:grid-cols-2">
       <div>
-        <h1 className="font-display text-4xl font-extrabold text-forest sm:text-5xl">
+        <h1 className="font-display text-4xl font-extrabold text-brand sm:text-5xl">
           {site.hero.name}
         </h1>
         <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-3xl">
@@ -16,7 +16,7 @@ export default function Hero({ site }: { site: SiteContent }) {
           href={site.resumeUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-8 inline-block border-b-2 border-ink pb-1 text-sm font-semibold text-ink hover:border-forest hover:text-forest"
+          className="mt-8 inline-block border-b-2 border-ink pb-1 text-sm font-semibold text-ink hover:border-brand hover:text-brand"
         >
           {site.hero.resumeCta}
         </a>

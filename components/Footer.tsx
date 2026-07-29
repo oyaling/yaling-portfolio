@@ -20,20 +20,20 @@ export default function Footer({
         <div className="mt-8 text-sm text-cream/60">{site.contact.emailLabel}</div>
         <a
           href={`mailto:${site.contact.email}`}
-          className="mt-1 inline-block text-xl font-semibold text-cream underline decoration-forest decoration-2 underline-offset-4"
+          className="mt-1 inline-block text-xl font-semibold text-cream underline decoration-brand decoration-2 underline-offset-4"
         >
           {site.contact.email}
         </a>
 
         <div className="mt-8 flex items-center justify-center gap-6 text-sm font-semibold">
-          <Link href={`/${locale}#work`} className="hover:text-forest">
+          <Link href={`/${locale}#work`} className="hover:text-brand">
             {site.contact.workLabel}
           </Link>
           <a
             href={site.contact.linkedinUrl}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-forest"
+            className="hover:text-brand"
           >
             {site.contact.linkedinLabel}
           </a>
@@ -41,7 +41,7 @@ export default function Footer({
             href={site.resumeUrl}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-forest"
+            className="hover:text-brand"
           >
             {site.contact.resumeLabel}
           </a>

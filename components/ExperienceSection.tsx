@@ -11,7 +11,7 @@ export default function ExperienceSection({ site }: { site: SiteContent }) {
           href={site.resumeUrl}
           target="_blank"
           rel="noreferrer"
-          className="text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4"
+          className="text-sm font-semibold text-ink underline decoration-brand decoration-2 underline-offset-4"
         >
           {site.hero.resumeCta}
         </a>
@@ -25,7 +25,7 @@ export default function ExperienceSection({ site }: { site: SiteContent }) {
                 href={job.link}
                 target="_blank"
                 rel="noreferrer"
-                className="font-display text-lg font-bold text-ink hover:text-forest"
+                className="font-display text-lg font-bold text-ink hover:text-brand"
               >
                 {job.role}
               </a>

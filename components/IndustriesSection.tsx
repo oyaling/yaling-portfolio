@@ -26,14 +26,14 @@ export default function IndustriesSection({
                 {industry.title}
               </h3>
             </div>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-forest">
+            <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-brand">
               {industry.tag}
             </p>
             <p className="mt-3 text-sm text-ink/70">{industry.body}</p>
             {industry.slug && (
               <Link
                 href={`/${locale}/work/${industry.slug}`}
-                className="mt-4 inline-block text-sm font-semibold text-ink underline decoration-forest decoration-2 underline-offset-4"
+                className="mt-4 inline-block text-sm font-semibold text-ink underline decoration-brand decoration-2 underline-offset-4"
               >
                 {industry.cta}
               </Link>
