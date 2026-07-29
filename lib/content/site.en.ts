@@ -101,7 +101,7 @@ const siteContent = {
     {
       role: "Product Designer - CURIO (Compass 360)",
       link: "https://curiogroup.com/",
-      location: "Remote | Oct 2023 – Present",
+      location: "Remote | Oct 2023 – Present | Freelancer",
       bullets: [
         "The product Compass 360 helps organisations understand their workforce capabilities. I designed survey platforms for managers to understand their governance ability.",
         "Created interactive prototypes to communicate design ideas and user journeys, ensuring alignment between user needs, technical feasibility, and product goals.",
@@ -111,7 +111,7 @@ const siteContent = {
     {
       role: "Product Designer - Userback",
       link: "https://curiogroup.com/",
-      location: "Melbourne, Australia | Sep 2022 – Jan 2023",
+      location: "Melbourne, Australia | Sep 2022 – Jan 2023 | Full-time",
       bullets: [
         "Userback is a SaaS product that helps gather feedback with a widget or surveys into one central admin, improving the digital products in many scenarios. I enhanced the user onboarding experience and provided in-app tutorials.",
         "Improved the filter function for admins to increase productivity, collaborating with cross-functional teams to ensure the new launches align with the product goals.",
@@ -121,7 +121,7 @@ const siteContent = {
     {
       role: "UX/UI Designer - CURIO (Palette)",
       link: "https://curiogroup.com/",
-      location: "",
+      location: "Melbourne, Australia | Mar 2020 – Aug 2022 | Full-time",
       bullets: [
         "Palette (renamed to Course-hub) is a service that helps learning course providers to market, manage and sell courses. I led the redesign of Palette, an admin with content management and block design features for website owners to manage their white-labelling learning platform.",
         "Conducted UX audits, restructured complex information architecture, and built a scalable design system.",
@@ -132,7 +132,7 @@ const siteContent = {
     {
       role: "UX/UI Designer - VENTY",
       link: "https://curiogroup.com/",
-      location: "Taiwan | Jul 2017 – Sep 2019",
+      location: "Taiwan | Jul 2017 – Sep 2019 | Full-time",
       bullets: [
         "Designed new features for an online inventory system, including activity history and financial account tracking.",
         "Maintained consistency in UI components and design language.",
@@ -142,7 +142,7 @@ const siteContent = {
     {
       role: "UX/UI Designer - NETEXBOOM",
       link: "https://curiogroup.com/",
-      location: "Taiwan | Nov 2016 – Jul 2017",
+      location: "Taiwan | Nov 2016 – Jul 2017 | Full-time",
       bullets: [
         "Designed a travel planning platform from concept to MVP for an early-stage startup. Allowing users to edit an itinerary from our website and create a trip to find travelling mates.",
         "Developed wireframes and conducted iterative usability testing for validation.",
@@ -152,7 +152,7 @@ const siteContent = {
     {
       role: "UX/UI Designer - CODEGREEN",
       link: "https://curiogroup.com/",
-      location: "Taiwan | Nov 2014 – Jul 2016",
+      location: "Taiwan | Nov 2014 – Jul 2016 | Full-time",
       bullets: [
         "Designed an Android app for a golf membership platform.",
         "Mapped user journeys to improve notification usability for a coach-finding platform.",

@@ -102,7 +102,7 @@ const siteContent: SiteContent = {
     {
       role: "產品設計師 - CURIO（Compass 360）",
       link: "https://curiogroup.com/",
-      location: "遠端 | 2023 年 10 月 – 至今",
+      location: "遠端 | 2023 年 10 月 – 至今 | 自由接案",
       bullets: [
         "Compass 360 協助企業了解團隊的職能狀況。我為主管設計了問卷平台，協助他們了解自身的治理能力。",
         "製作互動原型以傳達設計構想與使用者旅程，確保使用者需求、技術可行性與產品目標三者一致。",
@@ -112,7 +112,7 @@ const siteContent: SiteContent = {
     {
       role: "產品設計師 - Userback",
       link: "https://curiogroup.com/",
-      location: "澳洲墨爾本 | 2022 年 9 月 – 2023 年 1 月",
+      location: "澳洲墨爾本 | 2022 年 9 月 – 2023 年 1 月 | 全職",
       bullets: [
         "Userback 是一款 SaaS 產品，透過小工具或問卷將回饋集中收集到單一後台，協助改善各種情境下的數位產品體驗。我優化了使用者的上線體驗，並提供了應用內教學。",
         "改善後台的篩選功能以提升管理效率，並與跨部門團隊合作，確保新功能上線時與產品目標一致。",
@@ -122,7 +122,7 @@ const siteContent: SiteContent = {
     {
       role: "UX/UI 設計師 - CURIO（Palette）",
       link: "https://curiogroup.com/",
-      location: "",
+      location: "澳洲墨爾本 | 2020 年 3 月 – 2022 年 8 月 | 全職",
       bullets: [
         "Palette（後更名為 Course-hub）是一項協助教育機構行銷、管理並銷售課程的服務。我主導了 Palette 的後台重新設計，讓網站經營者能透過內容管理與區塊化設計功能，管理自己的白牌學習平台。",
         "執行 UX 審查、重整複雜的資訊架構，並建立一套可延展的設計系統。",
@@ -133,7 +133,7 @@ const siteContent: SiteContent = {
     {
       role: "UX/UI 設計師 - VENTY",
       link: "https://curiogroup.com/",
-      location: "台灣 | 2017 年 7 月 – 2019 年 9 月",
+      location: "台灣 | 2017 年 7 月 – 2019 年 9 月 | 全職",
       bullets: [
         "為線上庫存系統設計新功能，包含活動紀錄與財務帳務追蹤。",
         "維持 UI 元件與設計語言的一致性。",
@@ -143,7 +143,7 @@ const siteContent: SiteContent = {
     {
       role: "UX/UI 設計師 - NETEXBOOM",
       link: "https://curiogroup.com/",
-      location: "台灣 | 2016 年 11 月 – 2017 年 7 月",
+      location: "台灣 | 2016 年 11 月 – 2017 年 7 月 | 全職",
       bullets: [
         "為早期新創公司從概念發想到 MVP，設計一套旅遊規劃平台，讓使用者能在網站上編輯行程，並建立旅程尋找同行旅伴。",
         "製作線框圖並進行反覆的可用性測試以驗證設計。",
@@ -153,7 +153,7 @@ const siteContent: SiteContent = {
     {
       role: "UX/UI 設計師 - CODEGREEN",
       link: "https://curiogroup.com/",
-      location: "台灣 | 2014 年 11 月 – 2016 年 7 月",
+      location: "台灣 | 2014 年 11 月 – 2016 年 7 月 | 全職",
       bullets: [
         "為高爾夫會員平台設計 Android 應用程式。",
         "重新規劃使用者旅程，提升教練媒合平台的通知體驗。",
