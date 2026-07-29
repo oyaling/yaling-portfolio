@@ -123,7 +123,7 @@ const siteContent = {
       link: "https://curiogroup.com/",
       location: "Melbourne, Australia | Mar 2020 – Aug 2022 | Full-time",
       bullets: [
-        "Palette (renamed to Course-hub) is a service that helps learning course providers to market, manage and sell courses. I led the redesign of Palette, an admin with content management and block design features for website owners to manage their white-labelling learning platform.",
+        "Palette (renamed to Course-hub) is a service that helps learning course providers market, manage and sell courses. I led the redesign of Palette, an admin with content management and block design features for website owners to manage their white-labelling learning platform.",
         "Conducted UX audits, restructured complex information architecture, and built a scalable design system.",
         "Designed features such as coupon management, enrolment workflows, learner portals, and checkout.",
         "Contributed to 50% client growth within 10 months.",
