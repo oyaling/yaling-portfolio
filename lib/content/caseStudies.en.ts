@@ -1,6 +1,5 @@
 export interface CaseStudy {
   slug: string;
-  order: number;
   cardTitle: string;
   cardName: string;
   cardDesc: string;
@@ -53,12 +52,11 @@ const IMG = "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311";
 const caseStudies: CaseStudy[] = [
   {
     slug: "designing-admin-experience-for-better-enrolment-and-revenue-management",
-    order: 1,
     cardTitle: "Palette - E-learning platform admin",
     cardName: "Enrolment and revenue management",
     cardDesc: "Helps learning providers market, manage and sell courses.",
     title: "Designing admin experience for better enrolment and revenue management",
-    subtitle: "Helps learning providers to market, manage and sell courses.",
+    subtitle: "Helps learning providers market, manage and sell courses.",
     cover: `${IMG}/67370fcb86b2e6ca5c5f1150_Designthinking_Final%20solution3.jpg`,
     meta: {
       role: "Product designer",
@@ -206,12 +204,11 @@ const caseStudies: CaseStudy[] = [
   },
   {
     slug: "designing-a-block-based-feature-for-website-customisation",
-    order: 2,
     cardTitle: "Palette - E-learning platform admin",
     cardName: "Block Feature and content management",
     cardDesc: "Helps with website customisation.",
     title: "Designing a Block-Based Feature for Website Customisation",
-    subtitle: "Helps website customisation with CMS and block design features.",
+    subtitle: "Helps with website customisation.",
     cover: `${IMG}/68b8d8ea3538af5875e1bfc3_Block%20design_cover%20(6).jpg`,
     meta: {
       role: "Product designer",
@@ -311,7 +308,6 @@ const caseStudies: CaseStudy[] = [
   },
   {
     slug: "designing-a-survey-experience-and-visualising-assessment-data",
-    order: 3,
     cardTitle: "360 Assessment Tool",
     cardName: "Assessment experience and report",
     cardDesc: "Helps organisations understand their workforce capabilities.",
