@@ -144,7 +144,7 @@ const siteContent = {
       link: "https://curiogroup.com/",
       location: "Taipei, Taiwan | Nov 2016 – Jul 2017 | Full-time",
       bullets: [
-        "Designed a travel planning platform from concept to MVP for an early-stage startup. Allowing users to edit an itinerary from our website and create a trip to find travelling mates.",
+        "Designed a travel planning platform from concept to MVP for an early-stage startup. Allowed users to edit an itinerary from our website and create a trip to find travelling mates.",
         "Developed wireframes and conducted iterative usability testing for validation.",
         "Collaborated with developers and supported frontend handoff.",
       ],
@@ -156,7 +156,7 @@ const siteContent = {
       bullets: [
         "Designed an Android app for a golf membership platform.",
         "Mapped user journeys to improve notification usability for a coach-finding platform.",
-        "Redesigned the landing page to better communicate the product vision, leading to increased site traffic.",
+        "Redesigned the landing page to communicate the product vision better, leading to increased site traffic.",
       ],
     },
   ],
