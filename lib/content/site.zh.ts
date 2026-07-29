@@ -111,7 +111,7 @@ const siteContent: SiteContent = {
     },
     {
       role: "產品設計師 - Userback",
-      link: "https://curiogroup.com/",
+      link: "https://userback.io/",
       location: "澳洲墨爾本 | 2022 年 9 月 – 2023 年 1 月 | 全職",
       bullets: [
         "Userback 是一款 SaaS 產品，透過小工具或問卷將回饋集中收集到單一後台，協助改善各種情境下的數位產品體驗。我優化了使用者的上線體驗，並提供了應用內教學。",
@@ -132,7 +132,7 @@ const siteContent: SiteContent = {
     },
     {
       role: "UX/UI 設計師 - VENTY",
-      link: "https://curiogroup.com/",
+      link: "",
       location: "台北，台灣 | 2017 年 7 月 – 2019 年 9 月 | 全職",
       bullets: [
         "為線上庫存系統設計新功能，包含活動紀錄與財務帳務追蹤。",
@@ -142,7 +142,7 @@ const siteContent: SiteContent = {
     },
     {
       role: "UX/UI 設計師 - NETEXBOOM",
-      link: "https://curiogroup.com/",
+      link: "",
       location: "台北，台灣 | 2016 年 11 月 – 2017 年 7 月 | 全職",
       bullets: [
         "為早期新創公司從概念發想到 MVP，設計一套旅遊規劃平台，讓使用者能在網站上編輯行程，並建立旅程尋找同行旅伴。",
@@ -152,7 +152,7 @@ const siteContent: SiteContent = {
     },
     {
       role: "UX/UI 設計師 - CODEGREEN",
-      link: "https://curiogroup.com/",
+      link: "",
       location: "台北，台灣 | 2014 年 11 月 – 2016 年 7 月 | 全職",
       bullets: [
         "為高爾夫會員平台設計 Android 應用程式。",

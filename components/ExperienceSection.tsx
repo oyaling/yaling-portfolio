@@ -21,14 +21,20 @@ export default function ExperienceSection({ site }: { site: SiteContent }) {
         {site.experience.map((job) => (
           <div key={job.role} className="border-t border-ink/10 pt-8">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <a
-                href={job.link}
-                target="_blank"
-                rel="noreferrer"
-                className="font-display text-lg font-bold text-ink hover:text-brand"
-              >
-                {job.role}
-              </a>
+              {job.link ? (
+                <a
+                  href={job.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-display text-lg font-bold text-ink hover:text-brand"
+                >
+                  {job.role}
+                </a>
+              ) : (
+                <p className="font-display text-lg font-bold text-ink">
+                  {job.role}
+                </p>
+              )}
               {job.location && (
                 <span className="text-sm text-brand">{job.location}</span>
               )}

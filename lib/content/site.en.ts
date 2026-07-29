@@ -110,7 +110,7 @@ const siteContent = {
     },
     {
       role: "Product Designer - Userback",
-      link: "https://curiogroup.com/",
+      link: "https://userback.io/",
       location: "Melbourne, Australia | Sep 2022 – Jan 2023 | Full-time",
       bullets: [
         "Userback is a SaaS product that helps gather feedback with a widget or surveys into one central admin, improving the digital products in many scenarios. I enhanced the user onboarding experience and provided in-app tutorials.",
@@ -131,7 +131,7 @@ const siteContent = {
     },
     {
       role: "UX/UI Designer - VENTY",
-      link: "https://curiogroup.com/",
+      link: "",
       location: "Taipei, Taiwan | Jul 2017 – Sep 2019 | Full-time",
       bullets: [
         "Designed new features for an online inventory system, including activity history and financial account tracking.",
@@ -141,7 +141,7 @@ const siteContent = {
     },
     {
       role: "UX/UI Designer - NETEXBOOM",
-      link: "https://curiogroup.com/",
+      link: "",
       location: "Taipei, Taiwan | Nov 2016 – Jul 2017 | Full-time",
       bullets: [
         "Designed a travel planning platform from concept to MVP for an early-stage startup. Allowed users to edit an itinerary from our website and create a trip to find travelling mates.",
@@ -151,7 +151,7 @@ const siteContent = {
     },
     {
       role: "UX/UI Designer - CODEGREEN",
-      link: "https://curiogroup.com/",
+      link: "",
       location: "Taipei, Taiwan | Nov 2014 – Jul 2016 | Full-time",
       bullets: [
         "Designed an Android app for a golf membership platform.",
