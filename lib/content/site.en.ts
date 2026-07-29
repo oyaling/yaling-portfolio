@@ -2,7 +2,7 @@ const siteContent = {
   nav: { home: "Home", work: "Work", experience: "Experience" },
   hero: {
     greetings: ["Hello :)", "Hallo", "Nǐ hǎo"],
-    name: "I'm Ya-ling O.",
+    name: "Ya-ling O.",
     headline:
       "A product designer experienced in product strategy, UX/UI and System Thinking.",
     body: "My experience across admin interfaces, CMS features, B2B products and optimising onboarding and payment experiences.",
@@ -58,7 +58,7 @@ const siteContent = {
     },
     {
       title: "Tools",
-      desc: "Figma, Miro, Jira, Notion, Webflow, ChatGPT",
+      desc: "Figma, Jira, Webflow, Claude Code for prototyping",
     },
   ],
   industriesHeading: "Industries where I have experience",

@@ -4,7 +4,7 @@ const siteContent: SiteContent = {
   nav: { home: "首頁", work: "作品", experience: "經歷" },
   hero: {
     greetings: ["Hello :)", "Hallo", "Nǐ hǎo"],
-    name: "我是 Ya-ling O.",
+    name: "Ya-ling O.",
     headline: "一位擅長產品策略、UX/UI 設計與系統性思考的產品設計師。",
     body: "我的經驗橫跨後台管理介面、CMS 功能開發、B2B 產品，以及優化使用者上線流程與付款體驗。",
     resumeCta: "下載履歷",
@@ -59,7 +59,7 @@ const siteContent: SiteContent = {
     },
     {
       title: "工具",
-      desc: "Figma、Miro、Jira、Notion、Webflow、ChatGPT",
+      desc: "Figma、Jira、Webflow，以及用於原型設計的 Claude Code",
     },
   ],
   industriesHeading: "曾參與的產業經驗",
