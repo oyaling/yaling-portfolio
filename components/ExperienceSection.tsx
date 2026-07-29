@@ -30,7 +30,7 @@ export default function ExperienceSection({ site }: { site: SiteContent }) {
                 {job.role}
               </a>
               {job.location && (
-                <span className="text-sm text-ink/60">{job.location}</span>
+                <span className="text-sm text-brand">{job.location}</span>
               )}
             </div>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-ink/70">
