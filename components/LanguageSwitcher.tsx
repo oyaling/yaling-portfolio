@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import type { Locale } from "@/middleware";
-import { locales } from "@/middleware";
+import type { Locale } from "@/lib/locale";
+import { locales } from "@/lib/locale";
 
 export default function LanguageSwitcher({
   locale,

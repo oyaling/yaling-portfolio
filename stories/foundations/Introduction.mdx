@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Introduction" />
+
+# Ya-Ling O — Portfolio design guideline
+
+This is the design system extracted from the live [yaling-portfolio](../..) Next.js
+site: every color, type style, spacing value and component here is copied
+directly from the classes actually used in `app/` and `components/`, not
+invented. Nothing on the live site was changed — these are new files that
+document the existing visual language.
+
+## What's in here
+
+- **Foundations** — Colors, Typography, and Spacing/Radius: the raw design
+  tokens (see `tailwind.config.ts`).
+- **Components** — the UI Kit: Button, Badge, Avatar, Card, SegmentedControl,
+  Callout, Typography atoms, Testimonial. Each reproduces the exact Tailwind
+  classes found inline in the site's components.
+- **Templates** — Homepage and Case Study, composed from the real page
+  components with real content, so you can see the full page in Storybook.
+
+## Notes
+
+- The site has **no form fields** (no inputs, selects, or textareas) — it's a
+  static portfolio, so there's no "Field" kit. The closest interactive
+  control is the language toggle, documented as **SegmentedControl**.
+- Two font families: **Poppins** (`font-display`, headings) and **Inter**
+  (`font-body`, everything else), loaded via `next/font/google` in
+  `app/[locale]/layout.tsx`.
+- Three brand colors: `cream` (page background), `brand` (accent/orange),
+  `ink` (near-black text) — plus opacity variants (`ink/10`, `ink/70`,
+  `brand/10`, etc.) used throughout for borders, muted text, and tints.

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { locales, defaultLocale, type Locale } from "@/lib/locale";
 
-export const locales = ["en", "zh-Hant"] as const;
-export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "en";
+export { locales, defaultLocale };
+export type { Locale };
 
 function detectLocale(request: NextRequest): Locale {
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
