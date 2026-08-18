@@ -37,6 +37,14 @@ const siteContent = {
       cover:
         "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b837fee833ab39f756004d_Survey%20tool_cover%20(5).jpg",
     },
+    {
+      slug: "multi-platform-menu-sync",
+      title: "Menu Sync - Multi-platform ordering ops",
+      name: "Bulk rollout and sync conflict handling",
+      desc: "Helps restaurant operators keep one menu in sync across delivery platforms.",
+      cta: "View work",
+      cover: "/work/menu-sync/cover.png",
+    },
   ],
   skillsHeading: "Skill",
   skills: [

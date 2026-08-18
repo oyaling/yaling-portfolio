@@ -29,6 +29,8 @@ export interface CaseStudy {
       body: string;
       note?: string;
       image?: string;
+      imageW?: number;
+      imageH?: number;
       gallery?: { src: string; label: string }[];
       prototypeUrl?: string;
       prototypeLabel?: string;
@@ -36,14 +38,28 @@ export interface CaseStudy {
   };
   finalSolution: {
     intro?: string;
-    items: { title: string; body: string; image?: string; video?: string }[];
+    linkUrl?: string;
+    linkLabel?: string;
+    items: {
+      title: string;
+      body: string;
+      image?: string;
+      imageW?: number;
+      imageH?: number;
+      video?: string;
+    }[];
   };
   outcome: {
     image?: string;
     video?: string;
     items: { title: string; body: string }[];
   };
-  learning?: { intro: string; body: string; image?: string };
+  learning?: {
+    intro: string;
+    body?: string;
+    image?: string;
+    items?: { title: string; body: string }[];
+  };
   flow: string;
 }
 
@@ -435,6 +451,185 @@ const caseStudies: CaseStudy[] = [
       image: `${IMG}/6816ed83936df62525af7587_Process3.1-1.jpg`,
     },
     flow: "1. Select and unselect an option → 2. Go next → 3. Get help and exit → 4. Submit → 5. Check the result → 6. Customise report → 7. Get report",
+  },
+  {
+    slug: "multi-platform-menu-sync",
+    cardTitle: "Menu Sync — Multi-platform ordering ops",
+    cardName: "Bulk rollout and sync conflict handling",
+    cardDesc:
+      "Helps restaurant operators keep one menu in sync across delivery platforms.",
+    title: "Designing a Multi-Platform Menu Sync System",
+    subtitle:
+      "Helps restaurant operators keep one menu in sync across delivery platforms.",
+    cover: "/work/menu-sync/cover.png",
+    meta: {
+      role: "Product designer (solo)",
+      duration: "Take-home case study",
+      team: "Self-directed",
+      skills: [
+        "Product Thinking",
+        "Information Architecture",
+        "Interaction Design",
+        "Design System",
+        "Bulk Operations UX",
+        "Prototype",
+      ],
+    },
+    product:
+      "Menu Sync is a concept platform for restaurant operators in Taiwan who list the same menu on Foodpanda, UberEats, LINE ordering, and their own website. It holds one canonical \"master menu\" that every channel syncs from, so a dish is edited once and pushed everywhere — with per-channel overrides where divergence is intentional.",
+    user: "The primary user is a restaurant operator — anywhere from a solo owner running one shop to a central menu team at a regional F&B group. The anchor case in this study is 快樂飯 HappyRice, a group with 18 branches across Taipei, Taichung, and Kaohsiung, each with its own Foodpanda and UberEats account.",
+    userStory:
+      "As an operations manager, I want to update a menu item once and push it to every branch and platform — and know immediately and precisely where it failed.",
+    summary:
+      "A self-directed take-home case study on how restaurant operators keep one menu consistent across several ordering platforms. I designed a canonical master-menu model with per-channel overrides, a visible sync-status system, and — the core of the brief — a bulk rollout flow that stages 77 menu changes across 18 branches and 2 platforms for a scheduled 00:00 launch, previews the impact before committing, and then reports exactly which of the 36 branch–platform pairs failed. Five flows were built end to end in hi-fi on a purpose-built design system.",
+    problem: {
+      items: [
+        {
+          text: "Fragmented management: operators update the same dish in three to five places by hand, which is where price inconsistencies and stale availability come from.",
+        },
+        {
+          text: "Sync blind spots and conflict anxiety: there is no clear signal when an item fails to sync on one channel, and no defined behaviour when a platform changes data on its own — for example UberEats auto-discounting a dish during a platform-wide promotion.",
+        },
+        {
+          text: "It breaks at scale: a seasonal update of 77 items across 18 branches and 2 platforms is 36 separate branch–platform pushes, each carrying per-branch price overrides that must survive the rollout untouched.",
+        },
+      ],
+      challenge:
+        "How might we let an operator change a menu once and push it everywhere — with enough visibility and control that they still trust it at 18 branches, not just 3?",
+    },
+    goal: {
+      intro:
+        "Five principles I set before drawing any screens. Every later decision traces back to one of them.",
+      items: [
+        {
+          title: "One source of truth",
+          body: "The platform keeps a canonical master menu, and every channel syncs from it rather than holding its own version of the truth.",
+        },
+        {
+          title: "Visible sync status",
+          body: "Every item shows its health across channels at a glance: synced, syncing, pending, overridden, conflict, failed, or disconnected.",
+        },
+        {
+          title: "Confidence before action",
+          body: "Risky actions — overwrite, force sync, a scheduled 36-pair rollout — are previewed and confirmed rather than fired blind.",
+        },
+        {
+          title: "Progressive disclosure",
+          body: "A single price edit stays a single price edit; the bulk machinery only appears when the task is genuinely bulk.",
+        },
+        {
+          title: "Recoverable by default",
+          body: "Conflicts resolve non-destructively, and a staged rollout stays reversible as one operation right up until it goes live.",
+        },
+      ],
+    },
+    process: {
+      heading: "Design process",
+      steps: [
+        {
+          title: "1. Information architecture of the mental model",
+          body: "I started from the idea that one shop has its own unique menu and every dish in it is unique data. That broke down as soon as an operator had many branches — 10 branches with 10 separate menus doesn't make anyone efficient. So the smallest unit, the master item, had to be the dish itself. That gave me four elements to model: master item data (if availability is off, it can't be distributed to any channel), branch distribution, channel price overrides, and a sync ID.",
+          note: "How might we use a main menu as the base, where each sync carries a unique ID storing all changes — a traceable record, like version control?",
+        },
+        {
+          title: "2. One consistent shape for individual and bulk actions",
+          body: "I wanted the same steps for adding one item and adding many, so operators only learn the pattern once. Individual adding runs Master data → Channel distribution and price overrides → Preview & schedule → Sync report. Bulk adding runs Select scope → Channels & branches → Schedule → Preview impact → Rollout report. The bulk path has one extra step — showing the impact across branches — because that is what gives people confidence before a large push.",
+        },
+        {
+          title: "3. Choosing between 'Upload CSV' and a full-width edit modal",
+          body: "The challenge was helping someone add, edit, or remove 77 items in one pass. I prototyped two options and chose CSV upload. It isn't the fastest route for a single quick edit, but operators making changes this large usually prepare the data in a document first, and a familiar spreadsheet environment produces fewer silent input errors than a 77-row inline table. It's also naturally reversible — re-upload a corrected file — and it keeps the rollout flow itself from becoming bulky.",
+          image: "/work/menu-sync/solution-ideation.png",
+          imageW: 2400,
+          imageH: 1262,
+        },
+        {
+          title: "4. Grouping item statuses into a report people can act on",
+          body: "To make the rollout report useful I organised the status types into levels. The first level is staged or live, based on the scheduled time. Below that, some actions belong at the branch–platform level and others at the item level. I went through many iterations of the report's summary section, and several approaches to showing individual and bulk results together in one Sync Dashboard table.",
+        },
+      ],
+    },
+    finalSolution: {
+      intro:
+        "Five flows built end to end in hi-fi. Each image below opens full size in a new tab.",
+      linkUrl:
+        "https://www.figma.com/design/c5LWPFhaS0cmIfQrsVTE3o/Menu-Sync-%E2%80%94-Design-System?node-id=331-2",
+      linkLabel: "Open the Figma file",
+      items: [
+        {
+          title: "Flow A — Add a new item",
+          body: "Master data first, then channel distribution with per-channel price overrides, then preview and schedule, then a live sync report per channel. The locked state matters: when availability is off on the master item, every channel checkbox locks, because an unavailable dish cannot be distributed anywhere.",
+          image: "/work/menu-sync/flow-a-add-item.png",
+          imageW: 2400,
+          imageH: 753,
+        },
+        {
+          title: "Flow B — Update an existing item",
+          body: "Editing master data shows per-channel status alongside it, so the operator sees which channels are overridden or in conflict before saving. Expanding a channel row reveals its price-override fields inline, and the change is reviewed as a diff before it is pushed.",
+          image: "/work/menu-sync/flow-b-update-item.png",
+          imageW: 2400,
+          imageH: 775,
+        },
+        {
+          title: "Flow C — Resolve a sync conflict",
+          body: "A queue of unresolved conflicts grouped for triage, then a side-by-side of the master value against the channel value with the reason shown — for example a platform-wide promotion that auto-discounted the dish. The operator keeps master, accepts the channel value, or sets a custom price; nothing is silently discarded on either side.",
+          image: "/work/menu-sync/flow-c-resolve-conflict.png",
+          imageW: 2400,
+          imageH: 1213,
+        },
+        {
+          title: "Flow D — Bulk rollout (the senior challenge)",
+          body: "77 items uploaded by CSV, pushed to 18 branches across Foodpanda and UberEats. Per-branch overrides stay locked so Taichung's NT$15 delivery surcharge survives the rollout, the whole operation is staged for 00:00 on a chosen date rather than applied immediately, and the impact is previewed branch by branch before anything is committed.",
+          image: "/work/menu-sync/flow-d-bulk-rollout.png",
+          imageW: 2400,
+          imageH: 471,
+        },
+        {
+          title: "Rollout report — staged vs live",
+          body: "Before it runs, all 36 branch–platform pairs share the same scheduled count and no variance, and the rollout is reversible as a single operation. After it runs, the same report fills in real numbers: 2,580 of 2,772 synced, 144 overridden, 12 in conflict, and 3 of 36 pairs failed — so the operator knows exactly which pairs to retry.",
+          image: "/work/menu-sync/rollout-staged-vs-live.png",
+          imageW: 2400,
+          imageH: 951,
+        },
+        {
+          title: "Rollout report — drill into one pair",
+          body: "\"View Detail\" on any row opens the 77-item breakdown for that branch–platform pair, with a price-override summary at the top confirming what was deliberately preserved — here, four items carrying Taichung West's delivery surcharge that the rollout did not touch.",
+          image: "/work/menu-sync/rollout-view-detail.png",
+          imageW: 2400,
+          imageH: 1546,
+        },
+        {
+          title: "Flow E — Sync dashboard",
+          body: "System-wide sync health across three tabs. Failed groups by branch × platform, because a bulk push is one transaction per pair — retry re-sends the whole pair. Scheduled collapses to one row per rollout, since nothing has run yet and there is no per-pair variance to show. Others is the entry point back into rollout events.",
+          image: "/work/menu-sync/flow-e-sync-dashboard.png",
+          imageW: 2400,
+          imageH: 487,
+        },
+      ],
+    },
+    outcome: { items: [] },
+    learning: {
+      intro:
+        "This was a take-home study rather than a shipped product, so instead of outcome metrics here is what I concluded and what I would test next.",
+      items: [
+        {
+          title: "Why this approach?",
+          body: "Upload CSV. When operators make data changes this large they usually prepare the information in a document first, so downloading a sample file and editing it safely in a familiar environment is the smoother process — and it keeps the rollout flow itself from becoming bulky.",
+        },
+        {
+          title: "What assumptions did I make?",
+          body: "That shop operators prioritise accuracy over speed when syncing menus. I think they don't sync often, but they want certainty that no conflicts are happening — so being able to check Conflicts and Failed matters more than shaving seconds off the edit itself.",
+        },
+        {
+          title: "What would I validate with more time?",
+          body: "Prototype both 'Upload CSV' and 'Edit in a full-width modal' and watch real users complete a large data update in each. I'd also run interviews to understand how operators actually perceive and act on the rollout report summary.",
+        },
+        {
+          title: "What breaks at 18 branches that works fine at 3?",
+          body: "Pagination and scrollbars had to go into nearly every table. I also added a search bar to rollout step 2, choosing branches — at 3 branches you'd just scan the list, but at 18, search is what lets an operator find one branch and fix its overrides quickly.",
+        },
+      ],
+    },
+    flow: "",
   },
 ];
 

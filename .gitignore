@@ -8,3 +8,6 @@ out
 
 *storybook.log
 storybook-static
+
+# Local source material (large PDFs) — not needed for the build
+reference/

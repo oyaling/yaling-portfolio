@@ -38,6 +38,14 @@ const siteContent: SiteContent = {
       cover:
         "https://cdn.prod.website-files.com/63e48f4ed598a369cd769311/68b837fee833ab39f756004d_Survey%20tool_cover%20(5).jpg",
     },
+    {
+      slug: "multi-platform-menu-sync",
+      title: "Menu Sync - 跨平台訂餐營運後台",
+      name: "批次上架與同步衝突處理",
+      desc: "協助餐飲業者讓同一份菜單在各外送平台之間保持同步。",
+      cta: "查看作品",
+      cover: "/work/menu-sync/cover.png",
+    },
   ],
   skillsHeading: "專長",
   skills: [

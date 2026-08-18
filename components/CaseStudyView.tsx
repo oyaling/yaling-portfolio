@@ -3,6 +3,43 @@ import Link from "next/link";
 import type { Locale } from "@/middleware";
 import type { CaseStudy, SiteContent } from "@/lib/content";
 
+function CaseImage({
+  src,
+  alt,
+  w,
+  h,
+}: {
+  src: string;
+  alt: string;
+  w?: number;
+  h?: number;
+}) {
+  // Wide multi-screen images break out of the reading column so the UI stays legible.
+  if (w && h) {
+    return (
+      <a
+        href={src}
+        target="_blank"
+        rel="noreferrer"
+        className="relative left-1/2 mt-6 block w-[min(94vw,1400px)] -translate-x-1/2 overflow-hidden rounded-xl border border-ink/10 bg-white"
+      >
+        <Image src={src} alt={alt} width={w} height={h} className="h-auto w-full" />
+      </a>
+    );
+  }
+  return (
+    <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 1024px) 800px, 100vw"
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
 export default function CaseStudyView({
   locale,
   site,
@@ -199,15 +236,12 @@ export default function CaseStudyView({
                 </a>
               )}
               {step.image && (
-                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
-                  <Image
-                    src={step.image}
-                    alt={step.title}
-                    fill
-                    sizes="(min-width: 1024px) 800px, 100vw"
-                    className="object-contain"
-                  />
-                </div>
+                <CaseImage
+                  src={step.image}
+                  alt={step.title}
+                  w={step.imageW}
+                  h={step.imageH}
+                />
               )}
               {step.gallery && (
                 <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -239,6 +273,17 @@ export default function CaseStudyView({
         {caseStudy.finalSolution.intro && (
           <p className="mt-4 text-ink/70">{caseStudy.finalSolution.intro}</p>
         )}
+        {caseStudy.finalSolution.linkUrl && (
+          <a
+            href={caseStudy.finalSolution.linkUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-cream hover:bg-brand/90"
+          >
+            {caseStudy.finalSolution.linkLabel ?? "Open the Figma file"}
+            <span aria-hidden>↗</span>
+          </a>
+        )}
         <div className="mt-8 space-y-12">
           {caseStudy.finalSolution.items.map((item, i) => (
             <div key={i}>
@@ -257,15 +302,12 @@ export default function CaseStudyView({
                 </div>
               ) : (
                 item.image && (
-                  <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(min-width: 1024px) 800px, 100vw"
-                      className="object-contain"
-                    />
-                  </div>
+                  <CaseImage
+                    src={item.image}
+                    alt={item.title}
+                    w={item.imageW}
+                    h={item.imageH}
+                  />
                 )
               )}
             </div>
@@ -273,6 +315,9 @@ export default function CaseStudyView({
         </div>
       </section>
 
+      {(caseStudy.outcome.items.length > 0 ||
+        caseStudy.outcome.video ||
+        caseStudy.outcome.image) && (
       <section className="mx-auto max-w-4xl px-6 py-10">
         <h2 className="font-display text-2xl font-extrabold text-ink">
           Outcome
@@ -312,30 +357,42 @@ export default function CaseStudyView({
             </div>
           ))}
         </div>
-        {!caseStudy.outcome.video && (
+        {!caseStudy.outcome.video && caseStudy.flow && (
           <p className="mt-8 text-sm text-ink/50">{caseStudy.flow}</p>
         )}
       </section>
+      )}
 
       {caseStudy.learning && (
         <section className="mx-auto max-w-4xl px-6 py-10">
           <h2 className="font-display text-2xl font-extrabold text-ink">
-            Learning
+            {caseStudy.learning.items ? "Reflection" : "Learning"}
           </h2>
           <p className="mt-4 text-ink/70">{caseStudy.learning.intro}</p>
-          <p className="mt-3 leading-relaxed text-ink/70">
-            {caseStudy.learning.body}
-          </p>
-          {caseStudy.learning.image && (
-            <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
-              <Image
-                src={caseStudy.learning.image}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 800px, 100vw"
-                className="object-contain"
-              />
+          {caseStudy.learning.body && (
+            <p className="mt-3 leading-relaxed text-ink/70">
+              {caseStudy.learning.body}
+            </p>
+          )}
+          {caseStudy.learning.items && (
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              {caseStudy.learning.items.map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-ink/10 bg-white/50 p-5"
+                >
+                  <p className="font-display font-bold text-brand">
+                    {item.title}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
             </div>
+          )}
+          {caseStudy.learning.image && (
+            <CaseImage src={caseStudy.learning.image} alt="" />
           )}
         </section>
       )}
