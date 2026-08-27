@@ -9,7 +9,7 @@ export interface CaseStudy {
   coverW?: number;
   coverH?: number;
   meta: {
-    role: string;
+    role?: string;
     duration?: string;
     team?: string;
     skills: string[];
@@ -63,6 +63,8 @@ export interface CaseStudy {
       image?: string;
       imageW?: number;
       imageH?: number;
+      /** Keep the image inside the reading column instead of breaking out wide. */
+      imageNarrow?: boolean;
       gallery?: { src: string; label: string }[];
       prototypeUrl?: string;
       prototypeLabel?: string;
@@ -506,8 +508,6 @@ const caseStudies: CaseStudy[] = [
     coverW: 2480,
     coverH: 1602,
     meta: {
-      role: "Product designer (solo)",
-      duration: "4 days",
       skills: [],
     },
     product: "",
@@ -594,6 +594,7 @@ const caseStudies: CaseStudy[] = [
           image: "/work/menu-sync/lofi-s5-rollout-report.png",
           imageW: 1480,
           imageH: 865,
+          imageNarrow: true,
         },
       ],
     },

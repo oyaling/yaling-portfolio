@@ -28,14 +28,25 @@ function CaseImage({
   alt,
   w,
   h,
+  narrow = false,
 }: {
   src: string;
   alt: string;
   w?: number;
   h?: number;
+  narrow?: boolean;
 }) {
-  // Wide multi-screen images break out of the reading column so the UI stays legible.
-  return <ZoomableImage src={src} alt={alt} w={w} h={h} wide={Boolean(w && h)} />;
+  // Wide multi-screen images break out of the reading column so the UI stays legible;
+  // narrow ones stay aligned to the text width.
+  return (
+    <ZoomableImage
+      src={src}
+      alt={alt}
+      w={w}
+      h={h}
+      wide={Boolean(w && h) && !narrow}
+    />
+  );
 }
 
 export default function CaseStudyView({
@@ -69,13 +80,18 @@ export default function CaseStudyView({
           h={caseStudy.coverH}
         />
 
+        {(caseStudy.meta.role ||
+          caseStudy.meta.duration ||
+          caseStudy.meta.team) && (
         <div className="mt-10 grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-3">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
-              Role
-            </p>
-            <p className="mt-1 font-semibold text-ink">{caseStudy.meta.role}</p>
-          </div>
+          {caseStudy.meta.role && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
+                Role
+              </p>
+              <p className="mt-1 font-semibold text-ink">{caseStudy.meta.role}</p>
+            </div>
+          )}
           {caseStudy.meta.duration && (
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">
@@ -95,6 +111,7 @@ export default function CaseStudyView({
             </div>
           )}
         </div>
+        )}
         <div className="mt-6 flex flex-wrap gap-2 empty:mt-0">
           {caseStudy.meta.skills.map((skill) => (
             <span
@@ -322,6 +339,7 @@ export default function CaseStudyView({
                   alt={step.title}
                   w={step.imageW}
                   h={step.imageH}
+                  narrow={step.imageNarrow}
                 />
               )}
               {step.gallery && (

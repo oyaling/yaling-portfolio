@@ -392,8 +392,6 @@ const caseStudies: CaseStudy[] = [
     coverW: 2480,
     coverH: 1602,
     meta: {
-      role: "產品設計師（獨立作業）",
-      duration: "4 天",
       skills: [],
     },
     product: "",
@@ -480,6 +478,7 @@ const caseStudies: CaseStudy[] = [
           image: "/work/menu-sync/lofi-s5-rollout-report.png",
           imageW: 1480,
           imageH: 865,
+          imageNarrow: true,
         },
       ],
     },
