@@ -9,6 +9,19 @@ function toEmbedUrl(url: string) {
   return url.replace("loom.com/share/", "loom.com/embed/");
 }
 
+/** Renders **double-asterisk** spans as bold, leaving the rest as plain text. */
+function inline(text: string) {
+  return text.split("**").map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="font-semibold text-ink">
+        {part}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
+
 /** Renders "\n\n"-separated copy as real paragraphs. */
 function Prose({ text, className = "" }: { text: string; className?: string }) {
   const paras = text.split(/\n{2,}/).filter(Boolean);
@@ -16,7 +29,7 @@ function Prose({ text, className = "" }: { text: string; className?: string }) {
     <>
       {paras.map((t, i) => (
         <p key={i} className={`${i === 0 ? "" : "mt-3 "}${className}`}>
-          {t}
+          {inline(t)}
         </p>
       ))}
     </>
