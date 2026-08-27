@@ -4,6 +4,11 @@ import type { Locale } from "@/middleware";
 import type { CaseStudy, SiteContent } from "@/lib/content";
 import ZoomableImage from "./ZoomableImage";
 
+/** Turns a Loom share link into its embeddable form; other URLs pass through. */
+function toEmbedUrl(url: string) {
+  return url.replace("loom.com/share/", "loom.com/embed/");
+}
+
 /** Renders "\n\n"-separated copy as real paragraphs. */
 function Prose({ text, className = "" }: { text: string; className?: string }) {
   const paras = text.split(/\n{2,}/).filter(Boolean);
@@ -226,6 +231,24 @@ export default function CaseStudyView({
               ))}
             </div>
           )}
+          {caseStudy.solutionWalkthrough.videoUrl && (
+            <figure className="relative left-1/2 mt-8 w-[min(94vw,1200px)] -translate-x-1/2">
+              <div className="aspect-video w-full overflow-hidden rounded-xl border border-ink/10 bg-ink/5">
+                <iframe
+                  src={toEmbedUrl(caseStudy.solutionWalkthrough.videoUrl)}
+                  title={caseStudy.solutionWalkthrough.videoLabel ?? "Prototype walkthrough"}
+                  allowFullScreen
+                  loading="lazy"
+                  className="h-full w-full"
+                />
+              </div>
+              {caseStudy.solutionWalkthrough.videoLabel && (
+                <figcaption className="mt-3 text-center text-sm text-ink/60">
+                  {caseStudy.solutionWalkthrough.videoLabel}
+                </figcaption>
+              )}
+            </figure>
+          )}
           <div className="mt-10 space-y-14">
             {caseStudy.solutionWalkthrough.steps.map((step, i) => (
               <div key={i}>
@@ -326,7 +349,7 @@ export default function CaseStudyView({
 
       <section className="mx-auto max-w-4xl px-6 py-10">
         <h2 className="font-display text-2xl font-extrabold text-ink">
-          Final solution
+          {caseStudy.finalSolution.heading ?? "Final solution"}
         </h2>
         {caseStudy.finalSolution.intro && (
           <p className="mt-4 text-ink/70">{caseStudy.finalSolution.intro}</p>
@@ -455,41 +478,44 @@ export default function CaseStudyView({
               {caseStudy.learning.body}
             </p>
           )}
-          {caseStudy.learning.items && (
-            <div className="mt-6 grid gap-6 sm:grid-cols-2">
-              {caseStudy.learning.items.map((item, i) => (
+          {(caseStudy.learning.items || caseStudy.learning.feedback) && (
+            <div className="mt-6 space-y-6">
+              {caseStudy.learning.items?.map((item, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-ink/10 bg-white/50 p-5"
+                  className="rounded-xl border border-ink/10 bg-white/50 p-6"
                 >
                   <p className="font-display font-bold text-brand">
                     {item.title}
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/70">
-                    {item.body}
-                  </p>
+                  <div className="mt-2">
+                    <Prose
+                      text={item.body}
+                      className="text-sm leading-relaxed text-ink/70"
+                    />
+                  </div>
                 </div>
               ))}
-            </div>
-          )}
-          {caseStudy.learning.feedback && (
-            <div className="mt-10">
-              <h3 className="font-display text-lg font-bold text-ink">
-                {caseStudy.learning.feedback.title}
-              </h3>
-              <div className="mt-2">
-                <Prose
-                  text={caseStudy.learning.feedback.body}
-                  className="leading-relaxed text-ink/70"
-                />
-              </div>
-              {caseStudy.learning.feedback.image && (
-                <CaseImage
-                  src={caseStudy.learning.feedback.image}
-                  alt={caseStudy.learning.feedback.title}
-                  w={caseStudy.learning.feedback.imageW}
-                  h={caseStudy.learning.feedback.imageH}
-                />
+              {caseStudy.learning.feedback && (
+                <div className="rounded-xl border border-ink/10 bg-white/50 p-6">
+                  <p className="font-display font-bold text-brand">
+                    {caseStudy.learning.feedback.title}
+                  </p>
+                  <div className="mt-2">
+                    <Prose
+                      text={caseStudy.learning.feedback.body}
+                      className="text-sm leading-relaxed text-ink/70"
+                    />
+                  </div>
+                  {caseStudy.learning.feedback.image && (
+                    <CaseImage
+                      src={caseStudy.learning.feedback.image}
+                      alt={caseStudy.learning.feedback.title}
+                      w={caseStudy.learning.feedback.imageW}
+                      h={caseStudy.learning.feedback.imageH}
+                    />
+                  )}
+                </div>
               )}
             </div>
           )}

@@ -29,6 +29,9 @@ export interface CaseStudy {
     heading: string;
     intro?: string;
     links?: { url: string; label: string }[];
+    /** Embedded walkthrough video (Loom share or embed URL). */
+    videoUrl?: string;
+    videoLabel?: string;
     steps: {
       title: string;
       body: string;
@@ -66,6 +69,7 @@ export interface CaseStudy {
     }[];
   };
   finalSolution: {
+    heading?: string;
     intro?: string;
     linkUrl?: string;
     linkLabel?: string;
@@ -491,13 +495,13 @@ const caseStudies: CaseStudy[] = [
   },
   {
     slug: "multi-platform-menu-sync",
-    cardTitle: "Menu Sync — Multi-platform ordering ops",
+    cardTitle: "Menu management scheduling tool",
     cardName:
-      "Menu management tools and how to use the Claude Code prototype in my design flow",
+      "Bulk operation for menu management across branches and channels",
     cardDesc:
       "Helps restaurant operators keep one menu in sync across delivery platforms.",
     title:
-      "Menu management tools and how to use the Claude Code prototype in my design flow",
+      "Bulk operation for menu management across branches and channels",
     subtitle:
       "Helps restaurant operators keep one menu in sync across delivery platforms.",
     cover: "/work/menu-sync/cover.png",
@@ -527,6 +531,8 @@ const caseStudies: CaseStudy[] = [
       heading: "Solution",
       intro:
         "The bulk operation flow, walked end to end in the coded prototype. Every image below is a real screen from the prototype — click any image to zoom in.",
+      videoUrl: "https://www.loom.com/share/ce1f1cd4ac674348a394f67dd5b05ac8",
+      videoLabel: "Walkthrough of the bulk operation flow in the prototype",
       links: [
         {
           url: "https://menu-sync-prototype.vercel.app/",
@@ -586,11 +592,12 @@ const caseStudies: CaseStudy[] = [
         },
         {
           title: "4. Grouping item statuses into a report people can act on",
-          body: "To make the rollout report useful I organised the status types into levels. The first level is staged or live, based on the scheduled time. Below that, some actions belong at the branch–platform level and others at the item level.\n\nI went through many iterations of the report's summary section, and several approaches to showing individual and bulk results together in one Sync Dashboard table.",
+          body: "To make the rollout report useful, I separated the sync event status and pulled out the failed and disconnected status to give users a reminder that they need to take action. I also thought about how to display heavy data in so many layers.\n\nHere is the lo-fi wireframe to show where the initial ideas started.",
         },
       ],
     },
     finalSolution: {
+      heading: "Other flows",
       intro: "The other flows, rebuilt in the prototype. Click any image to zoom in.",
       items: [
         {
@@ -618,23 +625,16 @@ const caseStudies: CaseStudy[] = [
     },
     extraSections: [
       {
-        heading: "Flow D — Bulk rollout: how the report summary changed",
+        heading: "Flow D — Bulk rollout: report design",
         intro:
-          "Step 5 is where most of the iteration happened. The summary had to answer three different questions at once, and the earlier design blurred them together.",
+          "Step 5 is where most of the iteration happened. The summary had to answer three different questions at once, so I separated three levels that were previously mixed together.",
         items: [
           {
-            title: "Earlier version — Figma",
-            body: "The first design put staged and live side by side as two separate screens, and the summary was a flat row of numbers. It read fine on a slide, but it never made clear which numbers described the whole rollout and which described a single branch.",
-            image: "/work/menu-sync/flow-d-report-earlier.png",
-            imageW: 2400,
-            imageH: 951,
-          },
-          {
-            title: "Latest — prototype",
-            body: "The redesign separates three levels that were previously mixed together. Sync status describes the rollout as a whole — Scheduled or Live. Detail status describes items — Synced, Overridden, Conflict. Branch type describes a branch–channel pair — Failed or Disconnected.\n\nOnce those three levels were named, one summary component could serve both states: scheduled shows a count with em-dashes for everything that hasn't happened yet, live fills in the real results.",
+            title: "Scheduled and Live, from one summary component",
+            body: "Sync status describes the rollout as a whole — Scheduled or Live. Detail status describes items — Synced, Overridden, Conflict. Branch type describes a branch–channel pair — Failed or Disconnected.\n\nOnce those three levels were named, a single summary component could serve both states. Scheduled (left) shows the staged count with em-dashes for everything that hasn't happened yet, and a note that the whole rollout can still be rescheduled or cancelled. Live (right) fills in the real results and surfaces the failed pairs as the thing to act on.",
             image: "/work/menu-sync/flow-d-report-compare.png",
-            imageW: 1612,
-            imageH: 2026,
+            imageW: 2600,
+            imageH: 880,
           },
         ],
       },
