@@ -496,12 +496,10 @@ const caseStudies: CaseStudy[] = [
   {
     slug: "multi-platform-menu-sync",
     cardTitle: "Menu management scheduling tool",
-    cardName:
-      "Bulk operation for menu management across branches and channels",
+    cardName: "Bulk operation for menu management",
     cardDesc:
       "Helps restaurant operators keep one menu in sync across delivery platforms.",
-    title:
-      "Bulk operation for menu management across branches and channels",
+    title: "Bulk operation for menu management",
     subtitle:
       "Helps restaurant operators keep one menu in sync across delivery platforms.",
     cover: "/work/menu-sync/cover.png",
@@ -593,6 +591,9 @@ const caseStudies: CaseStudy[] = [
         {
           title: "4. Grouping item statuses into a report people can act on",
           body: "To make the rollout report useful, I separated the sync event status and pulled out the failed and disconnected status to give users a reminder that they need to take action. I also thought about how to display heavy data in so many layers.\n\nHere is the lo-fi wireframe to show where the initial ideas started.",
+          image: "/work/menu-sync/lofi-s5-rollout-report.png",
+          imageW: 1480,
+          imageH: 865,
         },
       ],
     },

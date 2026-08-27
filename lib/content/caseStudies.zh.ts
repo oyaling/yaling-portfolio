@@ -384,9 +384,9 @@ const caseStudies: CaseStudy[] = [
   {
     slug: "multi-platform-menu-sync",
     cardTitle: "菜單管理排程工具",
-    cardName: "跨分店與通路的菜單批次操作",
+    cardName: "菜單管理批次操作",
     cardDesc: "協助餐飲業者讓同一份菜單在各外送平台之間保持同步。",
-    title: "跨分店與通路的菜單批次操作",
+    title: "菜單管理批次操作",
     subtitle: "協助餐飲業者讓同一份菜單在各外送平台之間保持同步。",
     cover: "/work/menu-sync/cover.png",
     coverW: 2480,
@@ -477,6 +477,9 @@ const caseStudies: CaseStudy[] = [
         {
           title: "4. 將品項狀態分層，產出真正能行動的報告",
           body: "為了讓上架報告真正有用，我把同步事件的狀態拆分開來，並把「失敗」與「連線中斷」單獨拉出來，提醒使用者這些項目需要他們採取行動。我也思考了如何在這麼多層級中呈現龐大的資料量。\n\n以下是低擬真線框圖，呈現最初的構想從哪裡開始。",
+          image: "/work/menu-sync/lofi-s5-rollout-report.png",
+          imageW: 1480,
+          imageH: 865,
         },
       ],
     },

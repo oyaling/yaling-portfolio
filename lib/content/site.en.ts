@@ -39,8 +39,8 @@ const siteContent = {
     },
     {
       slug: "multi-platform-menu-sync",
-      title: "Menu Sync - Multi-platform ordering ops",
-      name: "Menu management tools and how to use the Claude Code prototype in my design flow",
+      title: "Menu management scheduling tool",
+      name: "Bulk operation for menu management",
       desc: "Helps restaurant operators keep one menu in sync across delivery platforms.",
       cta: "View work",
       cover: "/work/menu-sync/cover.png",
