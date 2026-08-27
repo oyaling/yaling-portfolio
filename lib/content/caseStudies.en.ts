@@ -514,7 +514,7 @@ const caseStudies: CaseStudy[] = [
     user: "",
     userStory: "",
     summary:
-      "A self-directed case study on how restaurant operators keep one menu consistent across several ordering platforms. The operator can easily manage the menu across 18 branches: the scenario is adding 40 dishes, updating 25 and removing 12 at the same time, then checking the sync situation — and if some branches fail, knowing how to solve the problem.\n\n**Using Claude Code in my design workflow, I researched and connected Figma MCP, building the low- and high-fidelity designs in Figma within four days. This was a 0-to-1 challenge. I also created a live, coded prototype of this complicated bulk operation process, providing the team with a tangible basis for internal discussion and iteration.**",
+      "A self-directed case study on how restaurant operators keep one menu consistent across several ordering platforms. The operator can easily manage the menu across 18 branches: the scenario is adding 40 dishes, updating 25 and removing 12 at the same time, then checking the sync situation — and if some branches fail, knowing how to solve the problem.\n\n**Using Claude Code in my design workflow, I connected Figma MCP, building the low- and high-fidelity designs in Figma within four days. This was a 0-to-1 challenge. I also created a live, coded prototype of this complicated bulk operation process, providing the team with a tangible basis for internal discussion and iteration.**",
     problem: {
       items: [
         {
