@@ -2,6 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/middleware";
 import type { CaseStudy, SiteContent } from "@/lib/content";
+import ZoomableImage from "./ZoomableImage";
+
+/** Renders "\n\n"-separated copy as real paragraphs. */
+function Prose({ text, className = "" }: { text: string; className?: string }) {
+  const paras = text.split(/\n{2,}/).filter(Boolean);
+  return (
+    <>
+      {paras.map((t, i) => (
+        <p key={i} className={`${i === 0 ? "" : "mt-3 "}${className}`}>
+          {t}
+        </p>
+      ))}
+    </>
+  );
+}
 
 function CaseImage({
   src,
@@ -15,29 +30,7 @@ function CaseImage({
   h?: number;
 }) {
   // Wide multi-screen images break out of the reading column so the UI stays legible.
-  if (w && h) {
-    return (
-      <a
-        href={src}
-        target="_blank"
-        rel="noreferrer"
-        className="relative left-1/2 mt-6 block w-[min(94vw,1400px)] -translate-x-1/2 overflow-hidden rounded-xl border border-ink/10 bg-white"
-      >
-        <Image src={src} alt={alt} width={w} height={h} className="h-auto w-full" />
-      </a>
-    );
-  }
-  return (
-    <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(min-width: 1024px) 800px, 100vw"
-        className="object-contain"
-      />
-    </div>
-  );
+  return <ZoomableImage src={src} alt={alt} w={w} h={h} wide={Boolean(w && h)} />;
 }
 
 export default function CaseStudyView({
@@ -64,16 +57,12 @@ export default function CaseStudyView({
         </h1>
         <p className="mt-3 max-w-2xl text-ink/70">{caseStudy.subtitle}</p>
 
-        <div className="relative mt-10 aspect-[3840/2480] w-full overflow-hidden rounded-2xl bg-brand/10">
-          <Image
-            src={caseStudy.cover}
-            alt={caseStudy.title}
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
-        </div>
+        <ZoomableImage
+          src={caseStudy.cover}
+          alt={caseStudy.title}
+          w={caseStudy.coverW}
+          h={caseStudy.coverH}
+        />
 
         <div className="mt-10 grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-3">
           <div>
@@ -101,7 +90,7 @@ export default function CaseStudyView({
             </div>
           )}
         </div>
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2 empty:mt-0">
           {caseStudy.meta.skills.map((skill) => (
             <span
               key={skill}
@@ -131,28 +120,32 @@ export default function CaseStudyView({
         )}
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-3">
-        <div>
-          <h3 className="font-display text-lg font-bold text-ink">1. Product</h3>
-          <p className="mt-2 text-ink/70">{caseStudy.product}</p>
-        </div>
-        <div>
-          <h3 className="font-display text-lg font-bold text-ink">2. User</h3>
-          <p className="mt-2 text-ink/70">{caseStudy.user}</p>
-        </div>
-        <div>
-          <h3 className="font-display text-lg font-bold text-ink">
-            3. User story
-          </h3>
-          <p className="mt-2 text-ink/70">{caseStudy.userStory}</p>
-        </div>
-      </section>
+      {(caseStudy.product || caseStudy.user || caseStudy.userStory) && (
+        <section className="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-3">
+          <div>
+            <h3 className="font-display text-lg font-bold text-ink">1. Product</h3>
+            <p className="mt-2 text-ink/70">{caseStudy.product}</p>
+          </div>
+          <div>
+            <h3 className="font-display text-lg font-bold text-ink">2. User</h3>
+            <p className="mt-2 text-ink/70">{caseStudy.user}</p>
+          </div>
+          <div>
+            <h3 className="font-display text-lg font-bold text-ink">
+              3. User story
+            </h3>
+            <p className="mt-2 text-ink/70">{caseStudy.userStory}</p>
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-4xl px-6 py-10">
         <h2 className="font-display text-2xl font-extrabold text-ink">
           Summary
         </h2>
-        <p className="mt-4 leading-relaxed text-ink/70">{caseStudy.summary}</p>
+        <div className="mt-4">
+          <Prose text={caseStudy.summary} className="leading-relaxed text-ink/70" />
+        </div>
       </section>
 
       <section className="mx-auto max-w-4xl px-6 py-10">
@@ -164,15 +157,12 @@ export default function CaseStudyView({
             <div key={i}>
               <p className="text-ink/70">{item.text}</p>
               {item.image && (
-                <div className="relative mt-4 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
-                  <Image
-                    src={item.image}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 800px, 100vw"
-                    className="object-contain"
-                  />
-                </div>
+                <CaseImage
+                  src={item.image}
+                  alt=""
+                  w={item.imageW}
+                  h={item.imageH}
+                />
               )}
             </div>
           ))}
@@ -182,43 +172,111 @@ export default function CaseStudyView({
         </p>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-10">
-        <h2 className="font-display text-2xl font-extrabold text-ink">Goal</h2>
-        {caseStudy.goal.intro && (
-          <p className="mt-4 text-ink/70">{caseStudy.goal.intro}</p>
-        )}
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
-          {caseStudy.goal.items.map((item, i) => (
-            <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
-              <div className="flex items-start gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-cream">
-                  {i + 1}
-                </span>
-                <div>
-                  {item.title && (
-                    <p className="font-display font-bold text-ink">
-                      {item.title}
-                    </p>
-                  )}
-                  <p className="mt-1 text-sm text-ink/70">{item.body}</p>
+      {caseStudy.goal.items.length > 0 && (
+        <section className="mx-auto max-w-4xl px-6 py-10">
+          <h2 className="font-display text-2xl font-extrabold text-ink">Goal</h2>
+          {caseStudy.goal.intro && (
+            <p className="mt-4 text-ink/70">{caseStudy.goal.intro}</p>
+          )}
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            {caseStudy.goal.items.map((item, i) => (
+              <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-cream">
+                    {i + 1}
+                  </span>
+                  <div>
+                    {item.title && (
+                      <p className="font-display font-bold text-ink">
+                        {item.title}
+                      </p>
+                    )}
+                    <p className="mt-1 text-sm text-ink/70">{item.body}</p>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {caseStudy.solutionWalkthrough && (
+        <section className="mx-auto max-w-4xl px-6 py-10">
+          <h2 className="font-display text-2xl font-extrabold text-ink">
+            {caseStudy.solutionWalkthrough.heading}
+          </h2>
+          {caseStudy.solutionWalkthrough.intro && (
+            <p className="mt-4 text-ink/70">
+              {caseStudy.solutionWalkthrough.intro}
+            </p>
+          )}
+          {caseStudy.solutionWalkthrough.links && (
+            <div className="mt-5 flex flex-wrap gap-3">
+              {caseStudy.solutionWalkthrough.links.map((l) => (
+                <a
+                  key={l.url}
+                  href={l.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-cream hover:bg-brand/90"
+                >
+                  {l.label}
+                  <span aria-hidden>↗</span>
+                </a>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          )}
+          <div className="mt-10 space-y-14">
+            {caseStudy.solutionWalkthrough.steps.map((step, i) => (
+              <div key={i}>
+                <h3 className="font-display text-lg font-bold text-ink">
+                  {step.title}
+                </h3>
+                <div className="mt-2">
+                  <Prose text={step.body} className="leading-relaxed text-ink/70" />
+                </div>
+                {step.image && (
+                  <CaseImage
+                    src={step.image}
+                    alt={step.title}
+                    w={step.imageW}
+                    h={step.imageH}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-4xl px-6 py-10">
         <h2 className="font-display text-2xl font-extrabold text-ink">
           {caseStudy.process.heading}
         </h2>
+        {caseStudy.process.intro && (
+          <p className="mt-4 text-ink/70">{caseStudy.process.intro}</p>
+        )}
+        {caseStudy.process.toolSteps && (
+          <ol className="mt-6 space-y-3 rounded-2xl border border-ink/10 bg-white/50 p-6">
+            {caseStudy.process.toolSteps.map((t, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-cream">
+                  {i + 1}
+                </span>
+                <span className="text-sm leading-relaxed text-ink/75">{t}</span>
+              </li>
+            ))}
+          </ol>
+        )}
         <div className="mt-8 space-y-12">
           {caseStudy.process.steps.map((step, i) => (
             <div key={i}>
               <h3 className="font-display text-lg font-bold text-ink">
                 {step.title}
               </h3>
-              <p className="mt-2 leading-relaxed text-ink/70">{step.body}</p>
+              <div className="mt-2">
+                <Prose text={step.body} className="leading-relaxed text-ink/70" />
+              </div>
               {step.note && (
                 <p className="mt-3 rounded-xl bg-brand/10 p-4 text-sm font-semibold text-brand">
                   📌 {step.note}
@@ -290,7 +348,9 @@ export default function CaseStudyView({
               <h3 className="font-display text-lg font-bold text-ink">
                 {item.title}
               </h3>
-              <p className="mt-2 leading-relaxed text-ink/70">{item.body}</p>
+              <div className="mt-2">
+                <Prose text={item.body} className="leading-relaxed text-ink/70" />
+              </div>
               {item.video ? (
                 <div className="mt-4 w-full overflow-hidden rounded-xl bg-brand/10">
                   <video
@@ -315,6 +375,35 @@ export default function CaseStudyView({
         </div>
       </section>
 
+      {caseStudy.extraSections?.map((sec) => (
+        <section key={sec.heading} className="mx-auto max-w-4xl px-6 py-10">
+          <h2 className="font-display text-2xl font-extrabold text-ink">
+            {sec.heading}
+          </h2>
+          {sec.intro && <p className="mt-4 text-ink/70">{sec.intro}</p>}
+          <div className="mt-8 space-y-14">
+            {sec.items.map((item, i) => (
+              <div key={i}>
+                <h3 className="font-display text-lg font-bold text-ink">
+                  {item.title}
+                </h3>
+                <div className="mt-2">
+                  <Prose text={item.body} className="leading-relaxed text-ink/70" />
+                </div>
+                {item.image && (
+                  <CaseImage
+                    src={item.image}
+                    alt={item.title}
+                    w={item.imageW}
+                    h={item.imageH}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+
       {(caseStudy.outcome.items.length > 0 ||
         caseStudy.outcome.video ||
         caseStudy.outcome.image) && (
@@ -338,15 +427,7 @@ export default function CaseStudyView({
           </div>
         ) : (
           caseStudy.outcome.image && (
-            <div className="relative mt-6 aspect-[3024/1964] w-full overflow-hidden rounded-xl bg-brand/10">
-              <Image
-                src={caseStudy.outcome.image}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 800px, 100vw"
-                className="object-contain"
-              />
-            </div>
+            <CaseImage src={caseStudy.outcome.image} alt="" />
           )
         )}
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -389,6 +470,27 @@ export default function CaseStudyView({
                   </p>
                 </div>
               ))}
+            </div>
+          )}
+          {caseStudy.learning.feedback && (
+            <div className="mt-10">
+              <h3 className="font-display text-lg font-bold text-ink">
+                {caseStudy.learning.feedback.title}
+              </h3>
+              <div className="mt-2">
+                <Prose
+                  text={caseStudy.learning.feedback.body}
+                  className="leading-relaxed text-ink/70"
+                />
+              </div>
+              {caseStudy.learning.feedback.image && (
+                <CaseImage
+                  src={caseStudy.learning.feedback.image}
+                  alt={caseStudy.learning.feedback.title}
+                  w={caseStudy.learning.feedback.imageW}
+                  h={caseStudy.learning.feedback.imageH}
+                />
+              )}
             </div>
           )}
           {caseStudy.learning.image && (

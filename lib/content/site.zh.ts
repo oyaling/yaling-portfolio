@@ -41,7 +41,7 @@ const siteContent: SiteContent = {
     {
       slug: "multi-platform-menu-sync",
       title: "Menu Sync - 跨平台訂餐營運後台",
-      name: "批次上架與同步衝突處理",
+      name: "菜單管理工具，以及我如何把 Claude Code 原型放進設計流程",
       desc: "協助餐飲業者讓同一份菜單在各外送平台之間保持同步。",
       cta: "查看作品",
       cover: "/work/menu-sync/cover.png",

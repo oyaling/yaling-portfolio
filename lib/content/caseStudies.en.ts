@@ -6,6 +6,8 @@ export interface CaseStudy {
   title: string;
   subtitle: string;
   cover: string;
+  coverW?: number;
+  coverH?: number;
   meta: {
     role: string;
     duration?: string;
@@ -18,12 +20,39 @@ export interface CaseStudy {
   userStory: string;
   summary: string;
   problem: {
-    items: { text: string; image?: string }[];
+    items: { text: string; image?: string; imageW?: number; imageH?: number }[];
     challenge: string;
   };
   goal: { intro?: string; items: { title?: string; body: string }[] };
+  /** Prototype walkthrough rendered between Problem and Design process. */
+  solutionWalkthrough?: {
+    heading: string;
+    intro?: string;
+    links?: { url: string; label: string }[];
+    steps: {
+      title: string;
+      body: string;
+      image?: string;
+      imageW?: number;
+      imageH?: number;
+    }[];
+  };
+  /** Extra titled sections rendered after Final solution. */
+  extraSections?: {
+    heading: string;
+    intro?: string;
+    items: {
+      title: string;
+      body: string;
+      image?: string;
+      imageW?: number;
+      imageH?: number;
+    }[];
+  }[];
   process: {
     heading: string;
+    intro?: string;
+    toolSteps?: string[];
     steps: {
       title: string;
       body: string;
@@ -59,6 +88,14 @@ export interface CaseStudy {
     body?: string;
     image?: string;
     items?: { title: string; body: string }[];
+    /** A single highlighted feedback story with an annotated screenshot. */
+    feedback?: {
+      title: string;
+      body: string;
+      image?: string;
+      imageW?: number;
+      imageH?: number;
+    };
   };
   flow: string;
 }
@@ -455,161 +492,213 @@ const caseStudies: CaseStudy[] = [
   {
     slug: "multi-platform-menu-sync",
     cardTitle: "Menu Sync — Multi-platform ordering ops",
-    cardName: "Bulk rollout and sync conflict handling",
+    cardName:
+      "Menu management tools and how to use the Claude Code prototype in my design flow",
     cardDesc:
       "Helps restaurant operators keep one menu in sync across delivery platforms.",
-    title: "Designing a Multi-Platform Menu Sync System",
+    title:
+      "Menu management tools and how to use the Claude Code prototype in my design flow",
     subtitle:
       "Helps restaurant operators keep one menu in sync across delivery platforms.",
     cover: "/work/menu-sync/cover.png",
+    coverW: 2480,
+    coverH: 1602,
     meta: {
       role: "Product designer (solo)",
-      duration: "Take-home case study",
-      team: "Self-directed",
-      skills: [
-        "Product Thinking",
-        "Information Architecture",
-        "Interaction Design",
-        "Design System",
-        "Bulk Operations UX",
-        "Prototype",
-      ],
+      duration: "4 days",
+      skills: [],
     },
-    product:
-      "Menu Sync is a concept platform for restaurant operators in Taiwan who list the same menu on Foodpanda, UberEats, LINE ordering, and their own website. It holds one canonical \"master menu\" that every channel syncs from, so a dish is edited once and pushed everywhere — with per-channel overrides where divergence is intentional.",
-    user: "The primary user is a restaurant operator — anywhere from a solo owner running one shop to a central menu team at a regional F&B group. The anchor case in this study is 快樂飯 HappyRice, a group with 18 branches across Taipei, Taichung, and Kaohsiung, each with its own Foodpanda and UberEats account.",
-    userStory:
-      "As an operations manager, I want to update a menu item once and push it to every branch and platform — and know immediately and precisely where it failed.",
+    product: "",
+    user: "",
+    userStory: "",
     summary:
-      "A self-directed take-home case study on how restaurant operators keep one menu consistent across several ordering platforms. I designed a canonical master-menu model with per-channel overrides, a visible sync-status system, and — the core of the brief — a bulk rollout flow that stages 77 menu changes across 18 branches and 2 platforms for a scheduled 00:00 launch, previews the impact before committing, and then reports exactly which of the 36 branch–platform pairs failed. Five flows were built end to end in hi-fi on a purpose-built design system.",
+      "A self-directed case study on how restaurant operators keep one menu consistent across several ordering platforms. The operator can easily manage the menu across 18 branches: the scenario is adding 40 dishes, updating 25 and removing 12 at the same time, then checking the sync situation — and if some branches fail, knowing how to solve the problem.\n\nI used Claude Code in my design flow to research and to build the low-fi and hi-fi designs in Figma within 4 days. This is a 0-to-1 challenge. I also built a real coded prototype of this complicated bulk operation flow, so the team had something concrete to discuss and iterate on internally.",
     problem: {
       items: [
         {
-          text: "Fragmented management: operators update the same dish in three to five places by hand, which is where price inconsistencies and stale availability come from.",
-        },
-        {
-          text: "Sync blind spots and conflict anxiety: there is no clear signal when an item fails to sync on one channel, and no defined behaviour when a platform changes data on its own — for example UberEats auto-discounting a dish during a platform-wide promotion.",
-        },
-        {
-          text: "It breaks at scale: a seasonal update of 77 items across 18 branches and 2 platforms is 36 separate branch–platform pushes, each carrying per-branch price overrides that must survive the rollout untouched.",
+          text: "It breaks at scale. A seasonal update of 77 items across 18 branches and 2 platforms is 36 separate branch–platform pushes, each carrying per-branch price overrides that must survive the rollout untouched.",
         },
       ],
       challenge:
         "How might we let an operator change a menu once and push it everywhere — with enough visibility and control that they still trust it at 18 branches, not just 3?",
     },
-    goal: {
+    goal: { items: [] },
+    solutionWalkthrough: {
+      heading: "Solution",
       intro:
-        "Five principles I set before drawing any screens. Every later decision traces back to one of them.",
-      items: [
+        "The bulk operation flow, walked end to end in the coded prototype. Every image below is a real screen from the prototype — click any image to zoom in.",
+      links: [
         {
-          title: "One source of truth",
-          body: "The platform keeps a canonical master menu, and every channel syncs from it rather than holding its own version of the truth.",
+          url: "https://menu-sync-prototype.vercel.app/",
+          label: "Open the prototype",
         },
         {
-          title: "Visible sync status",
-          body: "Every item shows its health across channels at a glance: synced, syncing, pending, overridden, conflict, failed, or disconnected.",
+          url: "https://www.figma.com/design/c5LWPFhaS0cmIfQrsVTE3o/Menu-Sync-%E2%80%94-Design-System?node-id=331-2",
+          label: "Open the Figma file",
+        },
+      ],
+      steps: [
+        {
+          title: "Step 1 · Build the batch, then take it offline",
+          body: "The operator names the event and searches to add existing dishes one at a time. For a change this size, though, adding 77 rows by hand is the wrong tool — so the same screen offers a CSV template to download, edit offline, and re-upload.",
+          image: "/work/menu-sync/d-step1-search.png",
+          imageW: 2600,
+          imageH: 1216,
         },
         {
-          title: "Confidence before action",
-          body: "Risky actions — overwrite, force sync, a scheduled 36-pair rollout — are previewed and confirmed rather than fired blind.",
+          title: "Step 1 · CSV uploaded — 77 rows, typed automatically",
+          body: "Re-uploading the edited file fills the batch and sorts every row into New, Updated or Disable: 40 new dishes, 25 price updates, 12 removals. The tabs let the operator verify each group before going any further.",
+          image: "/work/menu-sync/d-step1-csv.png",
+          imageW: 2600,
+          imageH: 1625,
         },
         {
-          title: "Progressive disclosure",
-          body: "A single price edit stays a single price edit; the bulk machinery only appears when the task is genuinely bulk.",
+          title: "Step 2 · Two channels, and one override for all of them",
+          body: "Foodpanda and UberEats are selected. Instead of setting a markup branch by branch, the channel settings panel offers a scope choice: unique settings in each branch, or one override applied to every selected branch — here a 5% markup on Foodpanda.",
+          image: "/work/menu-sync/d-step2-channels.png",
+          imageW: 2600,
+          imageH: 1625,
         },
         {
-          title: "Recoverable by default",
-          body: "Conflicts resolve non-destructively, and a staged rollout stays reversible as one operation right up until it goes live.",
+          title: "Step 2 · All 18 branches, grouped by city",
+          body: "Branches sit in collapsible location accordions with a search bar on top. \"Select all\" takes all 18 in one action, and existing per-branch overrides — like Taichung's NT$15 Foodpanda surcharge — stay locked unless the operator explicitly edits them.",
+          image: "/work/menu-sync/d-step2-branches.png",
+          imageW: 2600,
+          imageH: 1625,
+        },
+        {
+          title: "Step 3 · Schedule it, or push now",
+          body: "The rollout is either pushed immediately or staged for a specific date and time. Staging is what makes a 36-pair operation reversible: nothing goes live until the scheduled moment, and the whole thing can be cancelled as one unit before then.",
+          image: "/work/menu-sync/d-step3-schedule.png",
+          imageW: 2600,
+          imageH: 699,
+        },
+        {
+          title: "Step 4 · Preview the impact before committing",
+          body: "Before anything is sent, the operator scrolls through exactly what will change and where: how many items, how many branch–channel pairs, and which branches carry overrides that will be preserved. This is the confidence step — the last place to catch a mistake while it is still free.",
+          image: "/work/menu-sync/d-step4-preview.png",
+          imageW: 2600,
+          imageH: 1625,
+        },
+        {
+          title: "Step 5 · Rollout report",
+          body: "After the push, the report fills in real numbers: 2,580 of 2,772 item-syncs succeeded, 144 were overridden, 12 hit conflicts, and 3 of 36 branch–channel pairs failed outright. Each row is one pair, so a failure is always attributable to a specific branch on a specific platform.",
+          image: "/work/menu-sync/d-step5-report.png",
+          imageW: 2600,
+          imageH: 1521,
+        },
+        {
+          title: "Step 5 · Drill into one branch–channel pair",
+          body: "\"View Detail\" opens the full 77-item breakdown for that pair, with master price against channel price on every row and a CSV export. Closing the modal, the operator moves on to the Sync Dashboard to retry whatever failed.",
+          image: "/work/menu-sync/d-step5-detail.png",
+          imageW: 2600,
+          imageH: 1600,
         },
       ],
     },
     process: {
       heading: "Design process",
+      intro:
+        "Four days, seven stages. Claude Code carried the research and build legwork so my time went into structure and decisions — here is what each stage delivered.",
+      toolSteps: [
+        "Use Claude Code to find 5 competitors and understand their problems and solutions.",
+        "Crawl one product's UI for the same function, to quickly build a UI kit in Claude Code with the Figma MCP.",
+        "Understand the problem scope and ideate on the potential user using a scenario.",
+        "Use the Figma MCP for a low-fi wireframe to check the flow logic, then slowly add limitations and complexity.",
+        "Turn the low-fi into a hi-fi wireframe and check the usability of each flow.",
+        "Build the prototype with Claude Code and organise the design system in Storybook to iterate quickly.",
+        "Walk through the prototype with designers, product managers and the engineering team separately to get feedback.",
+      ],
       steps: [
         {
           title: "1. Information architecture of the mental model",
-          body: "I started from the idea that one shop has its own unique menu and every dish in it is unique data. That broke down as soon as an operator had many branches — 10 branches with 10 separate menus doesn't make anyone efficient. So the smallest unit, the master item, had to be the dish itself. That gave me four elements to model: master item data (if availability is off, it can't be distributed to any channel), branch distribution, channel price overrides, and a sync ID.",
+          body: "I started from the idea that one shop has its own menu and every dish in it is unique data. That broke down as soon as an operator had many branches — 10 branches with 10 separate menus doesn't make anyone efficient. So the smallest unit, the master item, had to be the dish itself.\n\nThat gave me four things to model: master item data (if availability is off, it can't be distributed to any channel), branch distribution, channel price overrides, and a sync ID.",
           note: "How might we use a main menu as the base, where each sync carries a unique ID storing all changes — a traceable record, like version control?",
         },
         {
           title: "2. One consistent shape for individual and bulk actions",
-          body: "I wanted the same steps for adding one item and adding many, so operators only learn the pattern once. Individual adding runs Master data → Channel distribution and price overrides → Preview & schedule → Sync report. Bulk adding runs Select scope → Channels & branches → Schedule → Preview impact → Rollout report. The bulk path has one extra step — showing the impact across branches — because that is what gives people confidence before a large push.",
+          body: "I wanted adding one item and adding many to follow the same steps, so operators learn the pattern once.\n\nIndividual: master data → channel distribution and price overrides → preview & schedule → sync report.\n\nBulk: select scope → channels & branches → schedule → preview impact → rollout report.\n\nThe bulk path has one extra step — showing the impact across branches — because that is what gives people confidence before a large push.",
         },
         {
           title: "3. Choosing between 'Upload CSV' and a full-width edit modal",
-          body: "The challenge was helping someone add, edit, or remove 77 items in one pass. I prototyped two options and chose CSV upload. It isn't the fastest route for a single quick edit, but operators making changes this large usually prepare the data in a document first, and a familiar spreadsheet environment produces fewer silent input errors than a 77-row inline table. It's also naturally reversible — re-upload a corrected file — and it keeps the rollout flow itself from becoming bulky.",
+          body: "The challenge was helping someone add, edit or remove 77 items in one pass. I prototyped both and chose CSV upload.\n\nIt isn't the fastest route for a single quick edit, but operators making changes this large usually prepare the data in a document first, and a familiar spreadsheet produces fewer silent input errors than a 77-row inline table. It is also naturally reversible — re-upload a corrected file — and it keeps the rollout flow itself from becoming bulky.",
           image: "/work/menu-sync/solution-ideation.png",
           imageW: 2400,
           imageH: 1262,
         },
         {
           title: "4. Grouping item statuses into a report people can act on",
-          body: "To make the rollout report useful I organised the status types into levels. The first level is staged or live, based on the scheduled time. Below that, some actions belong at the branch–platform level and others at the item level. I went through many iterations of the report's summary section, and several approaches to showing individual and bulk results together in one Sync Dashboard table.",
+          body: "To make the rollout report useful I organised the status types into levels. The first level is staged or live, based on the scheduled time. Below that, some actions belong at the branch–platform level and others at the item level.\n\nI went through many iterations of the report's summary section, and several approaches to showing individual and bulk results together in one Sync Dashboard table.",
         },
       ],
     },
     finalSolution: {
-      intro:
-        "Five flows built end to end in hi-fi. Each image below opens full size in a new tab.",
-      linkUrl:
-        "https://www.figma.com/design/c5LWPFhaS0cmIfQrsVTE3o/Menu-Sync-%E2%80%94-Design-System?node-id=331-2",
-      linkLabel: "Open the Figma file",
+      intro: "The other flows, rebuilt in the prototype. Click any image to zoom in.",
       items: [
         {
           title: "Flow A — Add a new item",
-          body: "Master data first, then channel distribution with per-channel price overrides, then preview and schedule, then a live sync report per channel. The locked state matters: when availability is off on the master item, every channel checkbox locks, because an unavailable dish cannot be distributed anywhere.",
-          image: "/work/menu-sync/flow-a-add-item.png",
-          imageW: 2400,
-          imageH: 753,
+          body: "Master data first, then channel distribution with per-channel price overrides, then preview and schedule, then a live sync report per channel.\n\nThe detail that mattered most here was defining availability properly. Switching availability off on the master item and un-ticking every channel produce the same end result — the dish appears nowhere — but they mean different things, and two routes to one outcome is exactly how people get confused. So availability is the master switch: when it is off, every channel checkbox locks and the screen says why. The operator is never left guessing which of the two paths they were supposed to take.",
+          image: "/work/menu-sync/flow-a-steps.png",
+          imageW: 2560,
+          imageH: 1314,
         },
         {
           title: "Flow B — Update an existing item",
           body: "Editing master data shows per-channel status alongside it, so the operator sees which channels are overridden or in conflict before saving. Expanding a channel row reveals its price-override fields inline, and the change is reviewed as a diff before it is pushed.",
-          image: "/work/menu-sync/flow-b-update-item.png",
-          imageW: 2400,
-          imageH: 775,
+          image: "/work/menu-sync/flow-b-steps.png",
+          imageW: 2560,
+          imageH: 637,
         },
         {
           title: "Flow C — Resolve a sync conflict",
           body: "A queue of unresolved conflicts grouped for triage, then a side-by-side of the master value against the channel value with the reason shown — for example a platform-wide promotion that auto-discounted the dish. The operator keeps master, accepts the channel value, or sets a custom price; nothing is silently discarded on either side.",
-          image: "/work/menu-sync/flow-c-resolve-conflict.png",
-          imageW: 2400,
-          imageH: 1213,
-        },
-        {
-          title: "Flow D — Bulk rollout (the senior challenge)",
-          body: "77 items uploaded by CSV, pushed to 18 branches across Foodpanda and UberEats. Per-branch overrides stay locked so Taichung's NT$15 delivery surcharge survives the rollout, the whole operation is staged for 00:00 on a chosen date rather than applied immediately, and the impact is previewed branch by branch before anything is committed.",
-          image: "/work/menu-sync/flow-d-bulk-rollout.png",
-          imageW: 2400,
-          imageH: 471,
-        },
-        {
-          title: "Rollout report — staged vs live",
-          body: "Before it runs, all 36 branch–platform pairs share the same scheduled count and no variance, and the rollout is reversible as a single operation. After it runs, the same report fills in real numbers: 2,580 of 2,772 synced, 144 overridden, 12 in conflict, and 3 of 36 pairs failed — so the operator knows exactly which pairs to retry.",
-          image: "/work/menu-sync/rollout-staged-vs-live.png",
-          imageW: 2400,
-          imageH: 951,
-        },
-        {
-          title: "Rollout report — drill into one pair",
-          body: "\"View Detail\" on any row opens the 77-item breakdown for that branch–platform pair, with a price-override summary at the top confirming what was deliberately preserved — here, four items carrying Taichung West's delivery surcharge that the rollout did not touch.",
-          image: "/work/menu-sync/rollout-view-detail.png",
-          imageW: 2400,
-          imageH: 1546,
-        },
-        {
-          title: "Flow E — Sync dashboard",
-          body: "System-wide sync health across three tabs. Failed groups by branch × platform, because a bulk push is one transaction per pair — retry re-sends the whole pair. Scheduled collapses to one row per rollout, since nothing has run yet and there is no per-pair variance to show. Others is the entry point back into rollout events.",
-          image: "/work/menu-sync/flow-e-sync-dashboard.png",
-          imageW: 2400,
-          imageH: 487,
+          image: "/work/menu-sync/flow-c-steps.png",
+          imageW: 2560,
+          imageH: 598,
         },
       ],
     },
+    extraSections: [
+      {
+        heading: "Flow D — Bulk rollout: how the report summary changed",
+        intro:
+          "Step 5 is where most of the iteration happened. The summary had to answer three different questions at once, and the earlier design blurred them together.",
+        items: [
+          {
+            title: "Earlier version — Figma",
+            body: "The first design put staged and live side by side as two separate screens, and the summary was a flat row of numbers. It read fine on a slide, but it never made clear which numbers described the whole rollout and which described a single branch.",
+            image: "/work/menu-sync/flow-d-report-earlier.png",
+            imageW: 2400,
+            imageH: 951,
+          },
+          {
+            title: "Latest — prototype",
+            body: "The redesign separates three levels that were previously mixed together. Sync status describes the rollout as a whole — Scheduled or Live. Detail status describes items — Synced, Overridden, Conflict. Branch type describes a branch–channel pair — Failed or Disconnected.\n\nOnce those three levels were named, one summary component could serve both states: scheduled shows a count with em-dashes for everything that hasn't happened yet, live fills in the real results.",
+            image: "/work/menu-sync/flow-d-report-compare.png",
+            imageW: 1612,
+            imageH: 2026,
+          },
+        ],
+      },
+      {
+        heading: "Flow E — Sync dashboard",
+        intro:
+          "System-wide sync health across three tabs: Scheduled, Live and Failed.",
+        items: [
+          {
+            title: "Showing individual and bulk syncs in one table",
+            body: "The hard decision here was putting individual edits and bulk rollouts in the same table. A bulk rollout is one row standing for 36 branch–channel pairs; an individual edit is one row standing for itself. Mixed together without distinction, the counts stop meaning anything.\n\nTwo things solved it. A Type field labels every row as Bulk or Individual, so the reader always knows what a row represents. And on the Failed tab, a bulk row expands as an accordion into the specific branch–platform pairs that failed — because a bulk push is one transaction per pair, so retry has to act on the pair, not the item.",
+            image: "/work/menu-sync/flow-e-tabs.png",
+            imageW: 1612,
+            imageH: 2222,
+          },
+        ],
+      },
+    ],
     outcome: { items: [] },
     learning: {
       intro:
-        "This was a take-home study rather than a shipped product, so instead of outcome metrics here is what I concluded and what I would test next.",
+        "This was a 4-day self-directed study, so instead of shipped metrics, here is what I concluded and what the prototype walkthroughs changed.",
       items: [
         {
           title: "Why this approach?",
@@ -617,17 +706,20 @@ const caseStudies: CaseStudy[] = [
         },
         {
           title: "What assumptions did I make?",
-          body: "That shop operators prioritise accuracy over speed when syncing menus. I think they don't sync often, but they want certainty that no conflicts are happening — so being able to check Conflicts and Failed matters more than shaving seconds off the edit itself.",
+          body: "That operators prioritise accuracy over speed when syncing menus. I think they don't sync often, but they want certainty that no conflicts are happening — so being able to check Conflicts and Failed matters more than shaving seconds off the edit itself.",
         },
         {
           title: "What would I validate with more time?",
-          body: "Prototype both 'Upload CSV' and 'Edit in a full-width modal' and watch real users complete a large data update in each. I'd also run interviews to understand how operators actually perceive and act on the rollout report summary.",
-        },
-        {
-          title: "What breaks at 18 branches that works fine at 3?",
-          body: "Pagination and scrollbars had to go into nearly every table. I also added a search bar to rollout step 2, choosing branches — at 3 branches you'd just scan the list, but at 18, search is what lets an operator find one branch and fix its overrides quickly.",
+          body: "Prototype both 'Upload CSV' and 'Edit in a full-width modal' and watch real users complete a large data update in each. I'd also run interviews to understand how operators actually read and act on the rollout report summary.",
         },
       ],
+      feedback: {
+        title: "What breaks at 18 branches that works fine at 3?",
+        body: "In the bulk operation, Step 2 — Choose Channel and Branch — I listed all 18 branches and added a search bar on top, helping users navigate to a certain branch easily. But at the feedback stage I got a question about a 200-branch scenario. That is where grouping all the branches in a location into an accordion came from.\n\nAnother nice piece of feedback was about how to help the user make a one-time setting that applies to all branches. That was a good reminder that I had focused too much on flexibility and not enough on efficiency — so I added a global price override setting in the Choose Channel section.",
+        image: "/work/menu-sync/reflection-annotated.png",
+        imageW: 2600,
+        imageH: 1625,
+      },
     },
     flow: "",
   },
