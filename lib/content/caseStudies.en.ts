@@ -599,9 +599,30 @@ const caseStudies: CaseStudy[] = [
       ],
     },
     finalSolution: {
-      heading: "Other flows",
-      intro: "The other flows, rebuilt in the prototype. Click any image to zoom in.",
+      heading: "Dive into details about other flow",
+      intro: "The rest of the flows, rebuilt in the prototype. Click any image to zoom in.",
       items: [
+        {
+          title: "Flow D — Bulk rollout: report design",
+          body: "Step 5 is where most of the iteration happened. The summary had to answer three different questions at once, so I separated three levels that were previously mixed together. Sync status describes the rollout as a whole — Scheduled or Live. Detail status describes items — Synced, Overridden, Conflict. Branch type describes a branch–channel pair — Failed or Disconnected.\n\nOnce those three levels were named, a single summary component could serve both states. Scheduled (left) shows the staged count with em-dashes for everything that hasn't happened yet, and a note that the whole rollout can still be rescheduled or cancelled. Live (right) fills in the real results and surfaces the failed pairs as the thing to act on.",
+          image: "/work/menu-sync/flow-d-report-compare.png",
+          imageW: 2600,
+          imageH: 880,
+        },
+        {
+          title: "Flow E — Sync dashboard",
+          body: "System-wide sync health across three tabs: Scheduled, Live and Failed. The hard decision here was putting individual edits and bulk rollouts in the same table. A bulk rollout is one row standing for 36 branch–channel pairs; an individual edit is one row standing for itself. Mixed together without distinction, the counts stop meaning anything.\n\nTwo things solved it. A Type field labels every row as Bulk or Individual, so the reader always knows what a row represents. And on the Failed tab, a bulk row expands as an accordion into the specific branch–platform pairs that failed — because a bulk push is one transaction per pair, so retry has to act on the pair, not the item.",
+          image: "/work/menu-sync/flow-e-tabs.png",
+          imageW: 2600,
+          imageH: 533,
+        },
+        {
+          title: "Flow C — Resolve a sync conflict",
+          body: "A queue of unresolved conflicts grouped for triage, then a side-by-side of the master value against the channel value with the reason shown — for example a platform-wide promotion that auto-discounted the dish. The operator keeps master, accepts the channel value, or sets a custom price; nothing is silently discarded on either side.",
+          image: "/work/menu-sync/flow-c-steps.png",
+          imageW: 2560,
+          imageH: 598,
+        },
         {
           title: "Flow A — Add a new item",
           body: "Master data first, then channel distribution with per-channel price overrides, then preview and schedule, then a live sync report per channel.\n\nThe detail that mattered most here was defining availability properly. Switching availability off on the master item and un-ticking every channel produce the same end result — the dish appears nowhere — but they mean different things, and two routes to one outcome is exactly how people get confused. So availability is the master switch: when it is off, every channel checkbox locks and the screen says why. The operator is never left guessing which of the two paths they were supposed to take.",
@@ -616,45 +637,8 @@ const caseStudies: CaseStudy[] = [
           imageW: 2560,
           imageH: 637,
         },
-        {
-          title: "Flow C — Resolve a sync conflict",
-          body: "A queue of unresolved conflicts grouped for triage, then a side-by-side of the master value against the channel value with the reason shown — for example a platform-wide promotion that auto-discounted the dish. The operator keeps master, accepts the channel value, or sets a custom price; nothing is silently discarded on either side.",
-          image: "/work/menu-sync/flow-c-steps.png",
-          imageW: 2560,
-          imageH: 598,
-        },
       ],
     },
-    extraSections: [
-      {
-        heading: "Flow D — Bulk rollout: report design",
-        intro:
-          "Step 5 is where most of the iteration happened. The summary had to answer three different questions at once, so I separated three levels that were previously mixed together.",
-        items: [
-          {
-            title: "Scheduled and Live, from one summary component",
-            body: "Sync status describes the rollout as a whole — Scheduled or Live. Detail status describes items — Synced, Overridden, Conflict. Branch type describes a branch–channel pair — Failed or Disconnected.\n\nOnce those three levels were named, a single summary component could serve both states. Scheduled (left) shows the staged count with em-dashes for everything that hasn't happened yet, and a note that the whole rollout can still be rescheduled or cancelled. Live (right) fills in the real results and surfaces the failed pairs as the thing to act on.",
-            image: "/work/menu-sync/flow-d-report-compare.png",
-            imageW: 2600,
-            imageH: 880,
-          },
-        ],
-      },
-      {
-        heading: "Flow E — Sync dashboard",
-        intro:
-          "System-wide sync health across three tabs: Scheduled, Live and Failed.",
-        items: [
-          {
-            title: "Showing individual and bulk syncs in one table",
-            body: "The hard decision here was putting individual edits and bulk rollouts in the same table. A bulk rollout is one row standing for 36 branch–channel pairs; an individual edit is one row standing for itself. Mixed together without distinction, the counts stop meaning anything.\n\nTwo things solved it. A Type field labels every row as Bulk or Individual, so the reader always knows what a row represents. And on the Failed tab, a bulk row expands as an accordion into the specific branch–platform pairs that failed — because a bulk push is one transaction per pair, so retry has to act on the pair, not the item.",
-            image: "/work/menu-sync/flow-e-tabs.png",
-            imageW: 1612,
-            imageH: 2222,
-          },
-        ],
-      },
-    ],
     outcome: { items: [] },
     learning: {
       intro:
