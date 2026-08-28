@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { SiteContent } from "@/lib/content";
+import HeroMedia from "./HeroMedia";
 
 export default function Hero({ site }: { site: SiteContent }) {
   return (
@@ -22,16 +22,12 @@ export default function Hero({ site }: { site: SiteContent }) {
         </a>
       </div>
 
-      <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
-        <Image
-          src={site.profileImage}
-          alt={site.hero.name}
-          fill
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover"
-          priority
-        />
-      </div>
+      <HeroMedia
+        image={site.profileImage}
+        video="/hero-dark.mp4"
+        poster="/hero-dark-poster.jpg"
+        alt={site.hero.name}
+      />
     </section>
   );
 }
