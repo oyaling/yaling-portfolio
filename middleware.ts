@@ -4,15 +4,17 @@ import { locales, defaultLocale, type Locale } from "@/lib/locale";
 export { locales, defaultLocale };
 export type { Locale };
 
+/**
+ * English is the default for anyone arriving without a stated preference.
+ * Browser language is deliberately ignored: most visitors are reached through
+ * a locale-specific link, and guessing from Accept-Language sent English
+ * readers on Chinese-locale browsers to the Chinese site. A visitor who picks
+ * a language in the footer still gets that choice honoured via the cookie.
+ */
 function detectLocale(request: NextRequest): Locale {
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
   if (cookieLocale && (locales as readonly string[]).includes(cookieLocale)) {
     return cookieLocale as Locale;
-  }
-
-  const acceptLanguage = request.headers.get("accept-language") ?? "";
-  if (acceptLanguage.toLowerCase().includes("zh")) {
-    return "zh-Hant";
   }
 
   return defaultLocale;
