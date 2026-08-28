@@ -23,10 +23,8 @@ export default function Hero({ site }: { site: SiteContent }) {
       </div>
 
       <HeroMedia
-        lightVideo="/hero-light.mp4"
-        lightPoster="/hero-light-poster.jpg"
-        darkVideo="/hero-dark.mp4"
-        darkPoster="/hero-dark-poster.jpg"
+        light="/hero-light.jpg"
+        dark="/hero-dark.jpg"
         alt={site.hero.name}
       />
     </section>
