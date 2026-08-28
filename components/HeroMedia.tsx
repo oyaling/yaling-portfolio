@@ -1,26 +1,39 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 /**
- * Shows the still bulb in light mode and the animated one in dark mode.
+ * Animated bulb in both themes: a warm cream clip in light, a near-black one
+ * in dark.
  *
- * The video is only mounted when the dark class is present, so light-mode
- * visitors never download it. A MutationObserver watches <html> so the swap
- * happens the moment the header toggle fires, without needing shared state.
+ * The posters are painted as CSS backgrounds and switched with the `dark`
+ * class, so the correct frame is on screen before any JavaScript runs — no
+ * wrong-theme flash. Once mounted, only the matching video is downloaded, so
+ * a visitor never pays for the theme they are not using.
  */
+
+// The clips' own backdrops sit a few levels off the page colour, so a soft
+// radial fade stops them reading as pasted-in rectangles. `closest-side` is
+// what makes the gradient reach every edge — the default farthest-corner
+// sizing leaves the top and bottom still partly opaque, showing a seam.
+const FADE =
+  "radial-gradient(ellipse closest-side at center, black 45%, transparent 96%)";
+const fade = { maskImage: FADE, WebkitMaskImage: FADE } as const;
+
 export default function HeroMedia({
-  image,
-  video,
-  poster,
+  lightVideo,
+  lightPoster,
+  darkVideo,
+  darkPoster,
   alt,
 }: {
-  image: string;
-  video: string;
-  poster: string;
+  lightVideo: string;
+  lightPoster: string;
+  darkVideo: string;
+  darkPoster: string;
   alt: string;
 }) {
+  const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
 
@@ -28,6 +41,7 @@ export default function HeroMedia({
     const root = document.documentElement;
     const read = () => setIsDark(root.classList.contains("dark"));
     read();
+    setMounted(true);
 
     const observer = new MutationObserver(read);
     observer.observe(root, { attributes: true, attributeFilter: ["class"] });
@@ -43,61 +57,36 @@ export default function HeroMedia({
     };
   }, []);
 
-  const frame =
-    "relative aspect-square w-full overflow-hidden rounded-2xl";
+  const showVideo = mounted && !reduceMotion;
 
-  // Someone who asked for less motion gets the video's own first frame,
-  // so the composition still matches the dark palette.
-  if (isDark && reduceMotion) {
-    return (
-      <div className={frame}>
-        <Image
-          src={poster}
-          alt={alt}
-          fill
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover"
-          priority
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
+      {/* Theme-correct still frame, live before hydration. */}
+      <div
+        aria-hidden
+        style={{ ...fade, backgroundImage: `url(${lightPoster})` }}
+        className="absolute inset-0 bg-cover bg-center dark:hidden"
+      />
+      <div
+        aria-hidden
+        style={{ ...fade, backgroundImage: `url(${darkPoster})` }}
+        className="absolute inset-0 hidden bg-cover bg-center dark:block"
+      />
 
-  if (isDark) {
-    return (
-      <div className={frame}>
+      {showVideo && (
         <video
-          src={video}
-          poster={poster}
+          key={isDark ? "dark" : "light"}
+          src={isDark ? darkVideo : lightVideo}
+          poster={isDark ? darkPoster : lightPoster}
           autoPlay
           muted
           loop
           playsInline
           aria-label={alt}
-          className="h-full w-full object-cover"
-          // The clip's own backdrop is a few levels off the page black, so a
-          // soft radial fade stops it reading as a pasted-in rectangle.
-          style={{
-            maskImage:
-              "radial-gradient(ellipse at center, black 55%, transparent 82%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse at center, black 55%, transparent 82%)",
-          }}
+          style={fade}
+          className="relative h-full w-full object-cover"
         />
-      </div>
-    );
-  }
-
-  return (
-    <div className={frame}>
-      <Image
-        src={image}
-        alt={alt}
-        fill
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="object-cover"
-        priority
-      />
+      )}
     </div>
   );
 }
