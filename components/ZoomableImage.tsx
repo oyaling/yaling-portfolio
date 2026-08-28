@@ -34,7 +34,7 @@ export default function ZoomableImage({
   }, [open]);
 
   const frame =
-    "block cursor-zoom-in overflow-hidden rounded-xl border border-ink/10 bg-white transition-shadow hover:shadow-lg";
+    "block cursor-zoom-in overflow-hidden rounded-xl border border-ink/10 bg-surface transition-shadow hover:shadow-lg";
 
   return (
     <>
@@ -76,16 +76,16 @@ export default function ZoomableImage({
           aria-modal="true"
           aria-label={alt}
           onClick={() => setOpen(false)}
-          className="fixed inset-0 z-[100] cursor-zoom-out overflow-auto bg-ink/95 p-4 sm:p-8"
+          className="fixed inset-0 z-[100] cursor-zoom-out overflow-auto bg-panel/95 p-4 sm:p-8"
         >
-          <span className="pointer-events-none fixed right-5 top-5 rounded-full bg-cream/90 px-4 py-2 text-sm font-semibold text-ink">
+          <span className="pointer-events-none fixed right-5 top-5 rounded-full bg-oncontrast/90 px-4 py-2 text-sm font-semibold text-panel">
             Close ✕
           </span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={src}
             alt={alt}
-            className="mx-auto h-auto w-full max-w-[1700px] rounded-lg bg-white"
+            className="mx-auto h-auto w-full max-w-[1700px] rounded-lg bg-surface"
           />
         </div>
       )}

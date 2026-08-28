@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/middleware";
 import type { SiteContent } from "@/lib/content";
-import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 const LOGO_URL = "/logo.png";
 
@@ -22,7 +22,7 @@ export default function Navbar({
             alt="Ya-Ling O"
             width={654}
             height={200}
-            className="h-8 w-auto"
+            className="h-8 w-auto dark:invert"
             priority
           />
         </Link>
@@ -37,7 +37,7 @@ export default function Navbar({
             {site.nav.experience}
           </Link>
         </nav>
-        <LanguageSwitcher locale={locale} labels={site.languageSwitcher} />
+        <ThemeToggle />
       </div>
     </header>
   );

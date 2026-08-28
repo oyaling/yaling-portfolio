@@ -1,6 +1,10 @@
 import type { Config } from "tailwindcss";
 
+/** Colours come from CSS variables so light/dark swap without per-class variants. */
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -9,9 +13,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: "#faf1e4",
-        brand: "#D4742A",
-        ink: "#2c2b29",
+        cream: token("bg"), // page background
+        ink: token("fg"), // primary text + borders
+        brand: token("brand"),
+        surface: token("surface"), // cards
+        panel: token("panel"), // always-dark areas (footer, lightbox)
+        oncontrast: token("oncontrast"), // text on panel / brand
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

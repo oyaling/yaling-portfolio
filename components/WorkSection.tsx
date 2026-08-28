@@ -21,7 +21,7 @@ export default function WorkSection({
           <Link
             key={item.slug}
             href={`/${locale}/work/${item.slug}`}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface/50 transition-shadow hover:shadow-xl"
           >
             <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-brand/10">
               <Image

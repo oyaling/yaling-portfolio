@@ -2,10 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --bg: 250 241 228; /* cream page */
+    --fg: 44 43 41; /* ink text */
+    --brand: 212 116 42;
+    --surface: 255 255 255; /* cards */
+    --panel: 44 43 41; /* footer, lightbox */
+    --oncontrast: 250 241 228; /* text on panel / brand */
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg: 24 23 22;
+    --fg: 237 232 223;
+    --brand: 226 141 66; /* lifted for contrast on dark */
+    --surface: 38 36 34;
+    --panel: 15 14 13;
+    --oncontrast: 250 241 228;
+    color-scheme: dark;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #faf1e4;
+  background-color: rgb(var(--bg));
 }

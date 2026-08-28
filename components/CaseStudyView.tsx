@@ -215,9 +215,9 @@ export default function CaseStudyView({
           )}
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             {caseStudy.goal.items.map((item, i) => (
-              <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
+              <div key={i} className="rounded-xl border border-ink/10 bg-surface/50 p-5">
                 <div className="flex items-start gap-3">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-cream">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-oncontrast">
                     {i + 1}
                   </span>
                   <div>
@@ -253,7 +253,7 @@ export default function CaseStudyView({
                   href={l.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-cream hover:bg-brand/90"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-oncontrast hover:bg-brand/90"
                 >
                   {l.label}
                   <span aria-hidden>↗</span>
@@ -310,10 +310,10 @@ export default function CaseStudyView({
           <p className="mt-4 text-ink/70">{caseStudy.process.intro}</p>
         )}
         {caseStudy.process.toolSteps && (
-          <ol className="mt-6 space-y-3 rounded-2xl border border-ink/10 bg-white/50 p-6">
+          <ol className="mt-6 space-y-3 rounded-2xl border border-ink/10 bg-surface/50 p-6">
             {caseStudy.process.toolSteps.map((t, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-cream">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-oncontrast">
                   {i + 1}
                 </span>
                 <span className="text-sm leading-relaxed text-ink/75">{t}</span>
@@ -340,7 +340,7 @@ export default function CaseStudyView({
                   href={step.prototypeUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-cream hover:bg-brand/90"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-oncontrast hover:bg-brand/90"
                 >
                   {step.prototypeLabel ?? "View prototype"}
                   <span aria-hidden>↗</span>
@@ -390,7 +390,7 @@ export default function CaseStudyView({
             href={caseStudy.finalSolution.linkUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-cream hover:bg-brand/90"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-oncontrast hover:bg-brand/90"
           >
             {caseStudy.finalSolution.linkLabel ?? "Open the Figma file"}
             <span aria-hidden>↗</span>
@@ -486,7 +486,7 @@ export default function CaseStudyView({
         )}
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {caseStudy.outcome.items.map((item, i) => (
-            <div key={i} className="rounded-xl border border-ink/10 bg-white/50 p-5">
+            <div key={i} className="rounded-xl border border-ink/10 bg-surface/50 p-5">
               <p className="font-display font-bold text-ink">{item.title}</p>
               <p className="mt-2 text-sm text-ink/70">{item.body}</p>
             </div>
@@ -514,7 +514,7 @@ export default function CaseStudyView({
               {caseStudy.learning.items?.map((item, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-ink/10 bg-white/50 p-6"
+                  className="rounded-xl border border-ink/10 bg-surface/50 p-6"
                 >
                   <p className="font-display font-bold text-brand">
                     {item.title}
@@ -528,7 +528,7 @@ export default function CaseStudyView({
                 </div>
               ))}
               {caseStudy.learning.feedback && (
-                <div className="rounded-xl border border-ink/10 bg-white/50 p-6">
+                <div className="rounded-xl border border-ink/10 bg-surface/50 p-6">
                   <p className="font-display font-bold text-brand">
                     {caseStudy.learning.feedback.title}
                   </p>
@@ -565,7 +565,7 @@ export default function CaseStudyView({
             <Link
               key={item.slug}
               href={`/${locale}/work/${item.slug}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-xl"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface/50 transition-shadow hover:shadow-xl"
             >
               <div className="relative aspect-[3840/2480] w-full overflow-hidden bg-brand/10">
                 <Image

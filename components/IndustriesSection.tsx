@@ -18,7 +18,7 @@ export default function IndustriesSection({
         {site.industries.map((industry) => (
           <div
             key={industry.title}
-            className="rounded-2xl border border-ink/10 bg-white/50 p-6"
+            className="rounded-2xl border border-ink/10 bg-surface/50 p-6"
           >
             <div className="flex items-center gap-2">
               <span className="text-2xl">{industry.emoji}</span>

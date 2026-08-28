@@ -37,6 +37,20 @@ export function generateMetadata({
   };
 }
 
+/**
+ * Applies the stored theme before first paint so the page never flashes
+ * the wrong palette on load.
+ */
+const themeScript = `
+(function(){
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (t === 'dark') document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();
+`;
+
 export default function LocaleLayout({
   children,
   params,
@@ -51,7 +65,13 @@ export default function LocaleLayout({
   const site = getSiteContent(locale);
 
   return (
-    <html lang={locale === "zh-Hant" ? "zh-Hant" : "en"}>
+    <html
+      lang={locale === "zh-Hant" ? "zh-Hant" : "en"}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         className={`${display.variable} ${body.variable} bg-cream font-body text-ink antialiased`}
       >

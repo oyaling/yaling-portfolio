@@ -192,8 +192,8 @@ const siteContent = {
     "https://drive.google.com/file/d/1CtEN4xiBfaSUQyRqVOiNlknVW-8oGjV2/view?usp=sharing",
   profileImage: "/hero.png",
   languageSwitcher: {
-    en: "EN",
-    zhHant: "繁中",
+    en: "English",
+    zhHant: "繁體中文",
   },
 };
 

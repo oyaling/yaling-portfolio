@@ -8,7 +8,7 @@ export default function RecommendationSection({ site }: { site: SiteContent }) {
       <h2 className="font-display text-3xl font-extrabold text-ink sm:text-4xl">
         {site.recommendationHeading}
       </h2>
-      <blockquote className="mt-8 rounded-2xl border border-ink/10 bg-white/50 p-8">
+      <blockquote className="mt-8 rounded-2xl border border-ink/10 bg-surface/50 p-8">
         <p className="text-lg italic leading-relaxed text-ink/80">
           &ldquo;{recommendation.quote}&rdquo;
         </p>
