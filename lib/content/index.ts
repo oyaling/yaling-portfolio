@@ -6,6 +6,20 @@ import type { CaseStudy } from "./caseStudies.en";
 import type { SiteContent } from "./site.en";
 import type { Locale } from "@/middleware";
 
+/**
+ * Case studies that stay published but are not listed anywhere on the site.
+ *
+ * The page still builds and still answers at its own URL, so a link already
+ * sent to an employer keeps working. It is simply not linked from the work
+ * grid or the "Other works" rail, and it is marked noindex so search engines
+ * drop it. Remove the slug here to list it again — nothing else to undo.
+ */
+const unlistedSlugs = new Set(["multi-platform-menu-sync"]);
+
+export function isUnlisted(slug: string): boolean {
+  return unlistedSlugs.has(slug);
+}
+
 export function getSiteContent(locale: Locale): SiteContent {
   return locale === "zh-Hant" ? siteZh : siteEn;
 }

@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/middleware";
-import { getSiteContent, getCaseStudies, getCaseStudy } from "@/lib/content";
+import {
+  getSiteContent,
+  getCaseStudies,
+  getCaseStudy,
+  isUnlisted,
+} from "@/lib/content";
 import CaseStudyView from "@/components/CaseStudyView";
 
 export function generateStaticParams() {
@@ -20,6 +25,9 @@ export function generateMetadata({
   return {
     title: `${caseStudy.title} · Ya-Ling O`,
     description: caseStudy.subtitle,
+    ...(isUnlisted(params.slug)
+      ? { robots: { index: false, follow: false } }
+      : {}),
   };
 }
 
@@ -36,7 +44,9 @@ export default function CaseStudyPage({
     notFound();
   }
 
-  const others = getCaseStudies(locale).filter((cs) => cs.slug !== params.slug);
+  const others = getCaseStudies(locale).filter(
+    (cs) => cs.slug !== params.slug && !isUnlisted(cs.slug)
+  );
 
   return (
     <CaseStudyView
